@@ -64,14 +64,11 @@ namespace RuffCoJetReservation
             datetimeTime.Format = DateTimePickerFormat.Custom;
             datetimeTime.CustomFormat = "h:mm tt";
             this.datetimeTime.Value = DateTime.Now;
-
-
-        }
-
-        private void setUsername(object sender, EventArgs e)
-        {
             labName.Text = LoginToken.Username;
+
+
         }
+
 
         private void labName_Click(object sender, EventArgs e)
         {

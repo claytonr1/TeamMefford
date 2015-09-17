@@ -173,7 +173,6 @@
             this.Name = "Form2";
             this.Text = "reservation";
             this.Activated += new System.EventHandler(this.Form2_Load);
-            this.Load += new System.EventHandler(this.setUsername);
             this.ResumeLayout(false);
             this.PerformLayout();
 
