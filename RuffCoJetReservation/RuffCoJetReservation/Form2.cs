@@ -68,10 +68,14 @@ namespace RuffCoJetReservation
 
         }
 
+        private void setUsername(object sender, EventArgs e)
+        {
+            labName.Text = LoginToken.Username;
+        }
+
         private void labName_Click(object sender, EventArgs e)
         {
-            
-           
+
         }
 
         private void btnReserver_Click(object sender, EventArgs e)
@@ -99,6 +103,11 @@ namespace RuffCoJetReservation
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void setUsername()
+        {
+        
         }
     }
 }

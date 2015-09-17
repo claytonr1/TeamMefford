@@ -12,13 +12,14 @@ namespace RuffCoJetReservation
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
             
             //Window Title Bar
             this.Text = "Ruffco";
-
+            
             Program.myForm2 = new Form2();
            
             
@@ -27,9 +28,14 @@ namespace RuffCoJetReservation
         private void btnLogIn_Click(object sender, EventArgs e)
         {
          //Close form1 and open form2
+            LoginToken.Login(txtbxUserName.Text, txtbxPassword.Text);
             Program.myForm2.Show();
+            
+
             this.Hide();
-           //Program.myForm2.labName.text = 
+            
+            
+           
 
 
             
