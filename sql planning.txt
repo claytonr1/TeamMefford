@@ -1,0 +1,114 @@
+sql structure
+
+RuffCo_: the database name
+
+  tables : functions
+    - columnNames
+ 
+  planes: stores the planes and their attributes
+    includes
+    - plane_id
+    - name varchar
+    - model varchar
+    - capacity int
+    - mile_range int
+    - current_location varchar
+    - cruise_speed int
+
+  reservations: link employees, planes, guests, and locations to a trip booked
+    includes
+    - flight_id 
+    - date dateTime
+    - plane_id (from planes)
+    - dest_id (from destinations)
+    - employee_id (from employees)
+    - guests (Guest's ids are stores as a varchar, separeated by commas , )
+
+  destinations: preset or added destinations employees can choose
+    includes
+    - dest_id
+    - location varchar
+    - distance_from_littlerock int
+  
+  employees:Employees registered to reserve jets
+    includes
+    - employee_id
+    - first_name varchar
+    - last_name varchar
+    - email varchar
+    - phone real
+    - username varchar
+    - password - encryption?
+
+  guests: Guests that employees have registered
+    includes
+    - guest_id
+    - first_name varchar
+    - last_name varchar
+    - email varchar
+    - phone real
+    - employee_id (This is how someone would be linked to the affiliated employee)
+
+
+
+
+
+Interfacing c# code:
+
+DBHanders: folder to hold all the database objects
+
+posible objects and methods:
+
+  ClassName : functions
+    method : functions
+
+  planesDB: Uses the plane table
+    getID: returns the planes id as an int
+    getName: returns the planes name as a string
+    getModel: returns the planes model as a string
+    getCapacity: returns the planes max capacity as an int
+    getRange: returns the planes max range as a double
+    getLocation: returns the planes current location as a string
+    getSpeed: returns the max speed per hour as a double
+    addPlane: adds a plane to the database
+  employeeDB: Uses the employees table - used for logins as well
+    getID: 
+    getFName:
+    getLName:
+    getEmail:
+    getPhone:
+    getUsername:
+    getpassword:
+    registerEmployee:
+    setFName:
+    setLName:
+    setEmail:
+    setPhone:
+    setUsername:
+    setPassword:
+  guestDB:
+    getID:
+    getEmployee:
+    getFName:
+    getLName:
+    getEmail:
+    getPhone:
+    addGuest:
+    setFName:
+    setLName:
+    setEmail:
+    setPhone:
+  destinationsDB:
+    getID:
+    getLocation:
+    getDistanceFromLR:
+    addDestination:
+  reservationsDB:
+    getID:
+    getDate:
+    getTime:
+    getEmployee:
+    getGuests:
+    getLocation:
+    getPlane:
+    newReservation:
