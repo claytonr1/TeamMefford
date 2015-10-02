@@ -11,46 +11,47 @@ RuffCo_: the database name
     - name varchar
     - model varchar
     - capacity int
-    - mile_range int
+    - mile_range float(2)
     - current_location varchar
-    - cruise_speed int
+    - cruise_speed float(2)
 
   reservations: link employees, planes, guests, and locations to a trip booked
     includes
-    - flight_id 
+    - reservation_id 
     - date dateTime
     - plane_id (from planes)
     - dest_id (from destinations)
     - employee_id (from employees)
-    - guests (Guest's ids are stores as a varchar, separeated by commas , )
 
   destinations: preset or added destinations employees can choose
     includes
     - dest_id
     - location varchar
-    - distance_from_littlerock int
+    - distance_from_LR float(2)
   
   employees:Employees registered to reserve jets
     includes
     - employee_id
-    - first_name varchar
-    - last_name varchar
+    - f_name varchar
+    - l_name varchar
     - email varchar
-    - phone real
+    - phone varchar
     - username varchar
     - password - encryption?
 
   guests: Guests that employees have registered
     includes
     - guest_id
-    - first_name varchar
-    - last_name varchar
+    - f_name varchar
+    - l_name varchar
     - email varchar
-    - phone real
+    - phone varchar
     - employee_id (This is how someone would be linked to the affiliated employee)
 
-
-
+  ReservationGuestXRef: Guests are cross referenced with a reservation_id (allows multiple guests on a single reservaiton
+    - XRef_id
+    - reservation_id
+    - guest_id
 
 
 Interfacing c# code:
@@ -62,7 +63,7 @@ posible objects and methods:
   ClassName : functions
     method : functions
 
-  planesDB: Uses the plane table
+  DBPlanes: Uses the plane table
     getID: returns the planes id as an int
     getName: returns the planes name as a string
     getModel: returns the planes model as a string
@@ -71,7 +72,7 @@ posible objects and methods:
     getLocation: returns the planes current location as a string
     getSpeed: returns the max speed per hour as a double
     addPlane: adds a plane to the database
-  employeeDB: Uses the employees table - used for logins as well
+  DBEmployee: Uses the employees table - used for logins as well
     getID: 
     getFName:
     getLName:
@@ -86,7 +87,7 @@ posible objects and methods:
     setPhone:
     setUsername:
     setPassword:
-  guestDB:
+  DBGuest:
     getID:
     getEmployee:
     getFName:
@@ -98,17 +99,17 @@ posible objects and methods:
     setLName:
     setEmail:
     setPhone:
-  destinationsDB:
+  DBDestinations:
     getID:
     getLocation:
     getDistanceFromLR:
     addDestination:
-  reservationsDB:
+  DBReservations:
     getID:
     getDate:
     getTime:
     getEmployee:
-    getGuests:
+    getGuests: (returns a collection of guest's ids)
     getLocation:
     getPlane:
     newReservation:

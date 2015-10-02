@@ -187,3 +187,4 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+RuffCoJetReservation/RuffCoJetReservation/DBHandlers/IDataBase.cs
