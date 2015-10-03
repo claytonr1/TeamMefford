@@ -81,8 +81,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBHandlers\DBDestinations.cs" />
     <Compile Include="DBHandlers\DBEmployees.cs" />
+    <Compile Include="DBHandlers\DBDestinations.cs" />
     <Compile Include="DBHandlers\DBGuests.cs" />
     <Compile Include="DBHandlers\DBHandler.cs" />
     <Compile Include="DBHandlers\DBPlanes.cs" />
