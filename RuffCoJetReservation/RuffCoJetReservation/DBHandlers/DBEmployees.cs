@@ -9,7 +9,7 @@ namespace RuffCoJetReservation.DBHandlers
 {
     static class DBEmployees
     {
-        public static int getID(string firstName, string lastName)
+        public static int getIDByName(string firstName, string lastName)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace RuffCoJetReservation.DBHandlers
             }
         }
 
-        public static int getID(string username)
+        public static int getIDByUsername(string username)
         {
             try
             {
@@ -54,12 +54,12 @@ namespace RuffCoJetReservation.DBHandlers
             }
         }
 
-        public static bool containsEmployee(string username)
+        public static bool containsUsername(string username)
         {
             return false;
         }
 
-        public static bool containsEmployee(string email)
+        public static bool containsEmail(string email)
         {
             return false;
         }
