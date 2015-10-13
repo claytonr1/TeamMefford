@@ -9,12 +9,31 @@ namespace RuffCoJetReservation.DBHandlers
 {
     static class DestinationsDB
     {
+        public static List<String> getDestinationsList()
+        {
+            try
+            {
+                
+                List<String> destList = new List<string>();
+                DataRow[] result = DBHandler.ruffCoDB.Tables["destinations"].Select();
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    destList.Add(Convert.ToString(result[i]["location"]));
+                }
+                return destList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
         public static int getID(string location)
         {
             try
             {
-                string expression = string.Format("location = {0}", location);
+                string expression = string.Format("location = '{0}'", location);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["destinations"].Select(expression);
                 int id = Convert.ToInt32(result[0][0]);
                 return id;
@@ -59,7 +78,7 @@ namespace RuffCoJetReservation.DBHandlers
         {
             try
             {
-                string expression = string.Format("location = {0}", location);
+                string expression = string.Format("location = '{0}'", location);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["destinations"].Select(expression);
                 double distance = Convert.ToDouble(result[0][2]);
                 return distance;
@@ -87,6 +106,11 @@ namespace RuffCoJetReservation.DBHandlers
             {
                 return false;
             }
+        }
+
+        public static bool updateDestDB()
+        {
+            return DBHandler.updateDestinations();
         }
     }
 }

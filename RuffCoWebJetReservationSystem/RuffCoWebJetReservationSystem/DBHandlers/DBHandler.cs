@@ -15,12 +15,26 @@ namespace RuffCoJetReservation.DBHandlers
         public const string RESERVATIONS_TABLE = "RuffCoReservations";
         public const string DESTINATIONS_TABLE = "RuffCoDestinations";
         public const string GUESTS_TABLE = "RuffCoGuests";
-        public const string GUESTS_X_DEST_TABLE = "RuffCoReservationGuestXRef";
+        public const string GUESTS_X_RES_TABLE = "RuffCoReservationGuestXRef";
 
         private static SqlConnection sql;
-        private static SqlDataAdapter adapter = new SqlDataAdapter();
         private static SqlDataReader reader;
         private static SqlCommand cmd;
+
+        private static SqlDataAdapter adapter = new SqlDataAdapter();
+        private static SqlDataAdapter adapterPlanes = new SqlDataAdapter("SELECT * FROM " + PLANES_TABLE, sql);
+        private static SqlDataAdapter adapterEmployees = new SqlDataAdapter("SELECT * FROM " + EMPLOYEES_TABLE, sql);
+        private static SqlDataAdapter adapterGuests = new SqlDataAdapter("SELECT * FROM " + GUESTS_TABLE, sql);
+        private static SqlDataAdapter adapterDestinations = new SqlDataAdapter("SELECT * FROM " + DESTINATIONS_TABLE, sql);
+        private static SqlDataAdapter adapterReservations = new SqlDataAdapter("SELECT * FROM " + RESERVATIONS_TABLE, sql);
+        private static SqlDataAdapter adapterGuestXRes = new SqlDataAdapter("SELECT * FROM " + GUESTS_X_RES_TABLE, sql);
+
+        private static SqlCommandBuilder cmdBuilderPlanes = new SqlCommandBuilder(adapterPlanes);
+        private static SqlCommandBuilder cmdBuilderEmployees = new SqlCommandBuilder(adapterEmployees);
+        private static SqlCommandBuilder cmdBuilderGuests = new SqlCommandBuilder(adapterGuests);
+        private static SqlCommandBuilder cmdBuilderDestinations = new SqlCommandBuilder(adapterDestinations);
+        private static SqlCommandBuilder cmdBuilderReservations = new SqlCommandBuilder(adapterReservations);
+        private static SqlCommandBuilder cmdBuilderGuestXRes = new SqlCommandBuilder(adapterGuestXRes);
 
         public static DataSet ruffCoDB = new DataSet();
 
@@ -84,11 +98,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("planes");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + PLANES_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable planes = new DataTable();
 
-                adapter.Fill(planes);
+                adapterPlanes.Fill(planes);
                 ruffCoDB.Tables.Add(planes);
                 ruffCoDB.Tables[index].TableName = "planes";
             }
@@ -106,11 +118,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("employees");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + EMPLOYEES_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable employees = new DataTable();
 
-                adapter.Fill(employees);
+                adapterEmployees.Fill(employees);
                 ruffCoDB.Tables.Add(employees);
                 ruffCoDB.Tables[index].TableName = "employees";
             }
@@ -128,11 +138,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("destinations");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + DESTINATIONS_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable destinations = new DataTable();
 
-                adapter.Fill(destinations);
+                adapterDestinations.Fill(destinations);
                 ruffCoDB.Tables.Add(destinations);
                 ruffCoDB.Tables[index].TableName = "destinations";
             }
@@ -150,11 +158,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("guests");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + GUESTS_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable guests = new DataTable();
 
-                adapter.Fill(guests);
+                adapterGuests.Fill(guests);
                 ruffCoDB.Tables.Add(guests);
                 ruffCoDB.Tables[index].TableName = "guests";
             }
@@ -172,11 +178,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("reservations");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + RESERVATIONS_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable reservations = new DataTable();
 
-                adapter.Fill(reservations);
+                adapterReservations.Fill(reservations);
                 ruffCoDB.Tables.Add(reservations);
                 ruffCoDB.Tables[index].TableName = "reservations";
             }
@@ -194,11 +198,9 @@ namespace RuffCoJetReservation.DBHandlers
                 {
                     ruffCoDB.Tables.Remove("ReservationsGuestsXRef");
                 }
-                cmd = new SqlCommand("SELECT * FROM " + GUESTS_X_DEST_TABLE, sql);
-                adapter.SelectCommand = cmd;
                 DataTable ReservationsGuestsXRef = new DataTable();
 
-                adapter.Fill(ReservationsGuestsXRef);
+                adapterGuestXRes.Fill(ReservationsGuestsXRef);
                 ruffCoDB.Tables.Add(ReservationsGuestsXRef);
                 ruffCoDB.Tables[index].TableName = "ReservationsGuestsXRef";
             }
@@ -208,74 +210,86 @@ namespace RuffCoJetReservation.DBHandlers
             }
         }
 
-        public static void updatePlanes()
+        public static bool updatePlanes()
         {
             try
             {
-
+                adapterPlanes.Update(ruffCoDB, "planes");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }
 
-        public static void updateEmployees()
+        public static bool updateEmployees()
         {
             try
             {
-
+                adapterEmployees.Update(ruffCoDB, "employees");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }
 
-        public static void updateReservations()
+        public static bool updateReservations()
         {
             try
             {
-
+                adapterReservations.Update(ruffCoDB, "reservations");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }
 
-        public static void updateDestinations()
+        public static bool updateDestinations()
         {
             try
             {
-
+                adapterDestinations.Update(ruffCoDB, "destinations");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }
 
-        public static void updateGuests()
+        public static bool updateGuests()
         {
             try
             {
-
+                adapterGuests.Update(ruffCoDB, "guests");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }
 
-        public static void updateReservationsGuestsXRef()
+        public static bool updateReservationsGuestsXRef()
         {
             try
             {
-
+                adapterGuestXRes.Update(ruffCoDB, "ReservationsGuestsXRef");
+                return true;
             }
             catch (Exception e)
             {
+                return false;
                 throw e;
             }
         }

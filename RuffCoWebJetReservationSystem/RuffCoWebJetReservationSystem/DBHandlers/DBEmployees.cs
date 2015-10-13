@@ -13,9 +13,9 @@ namespace RuffCoJetReservation.DBHandlers
         {
             try
             {
-                string expression = string.Format("f_name = {0} AND l_name = {1}", firstName, lastName);
+                string expression = string.Format("f_name = '{0}' AND l_name = '{1}'", firstName, lastName);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
-                int id = Convert.ToInt32(result[0][0]);
+                int id = Convert.ToInt32(result[0]["employee_id"]);
                 return id;
             }
             catch (Exception)
@@ -28,9 +28,9 @@ namespace RuffCoJetReservation.DBHandlers
         {
             try
             {
-                string expression = string.Format("username = {0}", username);
+                string expression = string.Format("username = '{0}'", username);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
-                int id = Convert.ToInt32(result[0][0]);
+                int id = Convert.ToInt32(result[0]["employee_id"]);
                 return id;
             }
             catch (Exception)
@@ -43,9 +43,9 @@ namespace RuffCoJetReservation.DBHandlers
         {
             try
             {
-                string expression = string.Format("email = {0}", email);
+                string expression = string.Format("email = '{0}'", email);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
-                int id = Convert.ToInt32(result[0][0]);
+                int id = Convert.ToInt32(result[0]["employee_id"]);
                 return id;
             }
             catch (Exception)
@@ -56,57 +56,205 @@ namespace RuffCoJetReservation.DBHandlers
 
         public static bool containsUsername(string username)
         {
-            return false;
+            try
+            {
+                string expression = string.Format("user_name = '{0}'", username);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+
+                if (Convert.ToString(result[0]["user_name"]) == (username))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static bool containsEmail(string email)
         {
-            return false;
+            try
+            {
+                string expression = string.Format("email = '{0}'", email);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+
+                if (Convert.ToString(result[0]["email"]) == (email))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static string getUserName(int id)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("employee_id = {0}", id);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String username = Convert.ToString(result[0]["user_name"]);
+                return username;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getUserName(string email)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("email = '{0}'", email);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String username = Convert.ToString(result[0]["user_name"]);
+                return username;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getPassword(string username)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("username = '{0}'", username);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                string password = Convert.ToString(result[0]["password"]);
+                return password;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getFName(int id)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("employee_id = {0}", id);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String name = Convert.ToString(result[0]["f_name"]);
+                return name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getFName(string email)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("email = '{0}'", email);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String name = Convert.ToString(result[0]["f_name"]);
+                return name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static string getFName(int id)
+        {
+            try
+            {
+                string expression = string.Format("employee_id = {0}", id);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String name = Convert.ToString(result[0]["l_name"]);
+                return name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getLName(string email)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("email = '{0}'", email);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String name = Convert.ToString(result[0]["l_name"]);
+                return name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getEmail(int id)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("employee_id = {0}", id);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String name = Convert.ToString(result[0]["f_name"]);
+                return name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static string getPhone(int id)
         {
-            return null;
+            try
+            {
+                string expression = string.Format("employee_id = {0}", id);
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
+                String phone = Convert.ToString(result[0]["phone"]);
+                return phone;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static bool registerEmployee(string firstName, string lastName, string email, string phone, string username, string password)
         {
-            return false;
+            try
+            {
+                DataRow newRow = DBHandler.ruffCoDB.Tables["employees"].NewRow();
+
+                newRow["f_name"] = firstName;
+                newRow["l_name"] = lastName;
+                newRow["email"] = email;
+                newRow["phone"] = phone;
+                newRow["user_name"] = username;
+                newRow["password"] = password;
+
+                DBHandler.ruffCoDB.Tables["employees"].Rows.Add(newRow);
+                updateEmployees();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static bool setFName()
@@ -137,6 +285,11 @@ namespace RuffCoJetReservation.DBHandlers
         public static bool setPassword()
         {
             return false;
+        }
+
+        public static bool updateEmployees()
+        {
+            return DBHandler.updateEmployees();
         }
     }
 }

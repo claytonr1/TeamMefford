@@ -256,5 +256,10 @@ namespace RuffCoJetReservation.DBHandlers
         {
             return false;
         }
+
+        public static bool updatePlanesDB()
+        {
+            return DBHandler.updatePlanes();
+        }
     }
 }
