@@ -42,5 +42,10 @@ namespace RuffCoJetReservation
             Program.myForm1.Show();
             this.Hide();
         }
+
+        private void labConDest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

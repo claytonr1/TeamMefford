@@ -37,29 +37,7 @@ namespace RuffCoJetReservation
 
         private void Form2_Load(object sender, EventArgs e)
         {   
-            //User Name from form1 to form 2
-           /* Program.theUser = new Person();
-            //Program.theUser.Name = ;
-            this.labName.Text = Program.theUser.Name; */
-
-           //Jets combo box on form2
-            List<string> jetList = new List<string>();
-            jetList.Add("Beechjet 400");
-            jetList.Add("Challenger 600");
-            jetList.Add("Challenger 601");
-            jetList.Add("Lear 45");
-
-            cmboxJets.Items.AddRange(jetList.ToArray());
-
-            //Destination combo box on form2
-            List<string> cityList = new List<string>();
-            cityList.Add("Charlottte, NC");
-            cityList.Add("Greenville, SC");
-            cityList.Add("Missoula, MT");
-            cityList.Add("Rapid City, SC");
-
-            cmboxDestination.Items.AddRange(cityList.ToArray());
-
+            
             //Minimum Current Time for Departure Time
             datetimeTime.Format = DateTimePickerFormat.Custom;
             datetimeTime.CustomFormat = "h:mm tt";
@@ -105,6 +83,11 @@ namespace RuffCoJetReservation
         private void setUsername()
         {
         
+        }
+
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

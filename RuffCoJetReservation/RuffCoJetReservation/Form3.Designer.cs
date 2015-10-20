@@ -102,6 +102,7 @@
             this.labConDest.Size = new System.Drawing.Size(62, 13);
             this.labConDest.TabIndex = 8;
             this.labConDest.Text = "labConDest";
+            this.labConDest.Click += new System.EventHandler(this.labConDest_Click);
             // 
             // labConDate
             // 
@@ -156,7 +157,7 @@
             this.Controls.Add(this.labConfirmDate);
             this.Controls.Add(this.labConfirmDestination);
             this.Controls.Add(this.labConfirmation);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form3";
             this.Text = "confirmation";
             this.Load += new System.EventHandler(this.Form3_Load);
