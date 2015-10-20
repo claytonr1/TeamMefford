@@ -44,16 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="DBHandlers\DBDestinations.cs" />
     <Compile Include="DBHandlers\DBEmployees.cs" />
     <Compile Include="DBHandlers\DBGuests.cs" />
     <Compile Include="DBHandlers\DBHandler.cs" />
     <Compile Include="DBHandlers\DBPlanes.cs" />
     <Compile Include="DBHandlers\DBReservations.cs" />
-
     <Compile Include="Employee.cs" />
-
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
