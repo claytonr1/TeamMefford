@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace RuffCoJetReservation.DBHandlers
+namespace RuffCoJetReservationSystem.DBHandlers
 {
-    static class DestinationsDB
+    public static class DestinationsDB
     {
         public static List<String> getDestinationsList()
         {
             try
             {
-                
                 List<String> destList = new List<string>();
                 DataRow[] result = DBHandler.ruffCoDB.Tables["destinations"].Select();
 
@@ -110,7 +109,14 @@ namespace RuffCoJetReservation.DBHandlers
 
         public static bool updateDestDB()
         {
-            return DBHandler.updateDestinations();
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

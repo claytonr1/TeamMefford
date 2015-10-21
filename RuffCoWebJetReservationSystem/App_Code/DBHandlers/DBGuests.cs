@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace RuffCoJetReservation.DBHandlers
+namespace RuffCoJetReservationSystem.DBHandlers
 {
-    static class DBGuests
+    public static class DBGuests
     {
         public static int getIDByName(string firstName, string lastName)
         {
@@ -91,7 +91,7 @@ namespace RuffCoJetReservation.DBHandlers
             }
         }
 
-        public static string getFName(int id)
+        public static string getLName(int id)
         {
             try
             {

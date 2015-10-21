@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace RuffCoJetReservation.DBHandlers
+namespace RuffCoJetReservationSystem.DBHandlers
 {
-    static class DBEmployees
+    public static class DBEmployees
     {
+        static RuffCoDataSet.employeesDataTable employees = new RuffCoDataSet.employeesDataTable();
+
         public static int getIDByName(string firstName, string lastName)
         {
             try
@@ -173,7 +175,7 @@ namespace RuffCoJetReservation.DBHandlers
             }
         }
 
-        public static string getFName(int id)
+        public static string getLName(int id)
         {
             try
             {

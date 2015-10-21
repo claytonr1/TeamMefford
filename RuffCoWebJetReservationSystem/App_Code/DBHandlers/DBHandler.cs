@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace RuffCoJetReservation.DBHandlers
+
+namespace RuffCoJetReservationSystem.DBHandlers
 {
-    static class DBHandler
+    public static class DBHandler
     {
         public const string EMPLOYEES_TABLE = "RuffCoEmployees";
         public const string PLANES_TABLE = "RuffCoPlanes";

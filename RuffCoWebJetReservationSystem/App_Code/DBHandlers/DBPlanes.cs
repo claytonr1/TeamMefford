@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace RuffCoJetReservation.DBHandlers
+namespace RuffCoJetReservationSystem.DBHandlers
 {
-    static class DBPlanes
+    public static class DBPlanes
     {
         public static int getID(string name)
         {
@@ -218,6 +218,8 @@ namespace RuffCoJetReservation.DBHandlers
                 newRow["cruise_speed"] = cruiseSpeed;
 
                 DBHandler.ruffCoDB.Tables["planes"].Rows.Add(newRow);
+                
+                updatePlanesDB();
 
                 return true;
             }

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace RuffCoJetReservation.DBHandlers {
+namespace RuffCoJetReservationSystem.DBHandlers {
     
     
     /// <summary>
