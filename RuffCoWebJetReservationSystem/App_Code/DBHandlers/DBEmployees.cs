@@ -9,8 +9,6 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBEmployees
     {
-        static RuffCoDataSet.employeesDataTable employees = new RuffCoDataSet.employeesDataTable();
-
         public static int getIDByName(string firstName, string lastName)
         {
             try

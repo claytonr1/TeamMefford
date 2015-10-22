@@ -21,6 +21,7 @@ namespace RuffCoWebJetReservationSystem
             {
                 DBHandler.openConection("Data Source=claytonr1.db.5867809.hostedresource.com;Persist Security Info=True;User ID=claytonr1;Password=Interface1");
                 DBHandler.populateDataSet();
+                DBHandler.closeConnection();
             }
             catch (Exception ex)
             {

@@ -10,6 +10,25 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBPlanes
     {
+        public static Dictionary<int, string> PlanesList()
+        {
+            try
+            {
+                Dictionary<int, string> planeList = new Dictionary<int, string>();
+                DataRow[] result = DBHandler.ruffCoDB.Tables["planes"].Select();
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    planeList.Add(Convert.ToInt32(result[i][0]), Convert.ToString(result[i]["name"]));
+                }
+                return planeList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static int getID(string name)
         {
             try

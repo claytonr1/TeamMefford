@@ -67,7 +67,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
-        //calls loading methods and creates relations
+        //calls loading methods and creates relations as well as primary keys
         public static void populateDataSet()
         {
             //deletes current data if any to repopulate
@@ -89,6 +89,37 @@ namespace RuffCoJetReservationSystem.DBHandlers
             ruffCoDB.Relations.Add(ruffCoDB.Tables["planes"].Columns["plane_id"], ruffCoDB.Tables["reservations"].Columns["plane_id"]);
             ruffCoDB.Relations.Add(ruffCoDB.Tables["reservations"].Columns["dest_id"], ruffCoDB.Tables["destinations"].Columns["dest_id"]);
 
+            //set primary keys
+            //plane table
+            DataColumn[] planeKeys = new DataColumn[1];
+            DataColumn planeColumn = ruffCoDB.Tables["planes"].Columns[0];
+            planeKeys[0] = planeColumn;
+            ruffCoDB.Tables["planes"].PrimaryKey = planeKeys;
+            //employee table
+            DataColumn[] employeeKeys = new DataColumn[1];
+            DataColumn employeeColumn = ruffCoDB.Tables["employees"].Columns[0];
+            employeeKeys[0] = employeeColumn;
+            ruffCoDB.Tables["employees"].PrimaryKey = employeeKeys;
+            //reservations table
+            DataColumn[] reservationsKeys = new DataColumn[1];
+            DataColumn reservationsColumn = ruffCoDB.Tables["reservations"].Columns[0];
+            reservationsKeys[0] = reservationsColumn;
+            ruffCoDB.Tables["reservations"].PrimaryKey = reservationsKeys;
+            //destinations table
+            DataColumn[] destKeys = new DataColumn[1];
+            DataColumn destColumn = ruffCoDB.Tables["destinations"].Columns[0];
+            destKeys[0] = destColumn;
+            ruffCoDB.Tables["destinations"].PrimaryKey = destKeys;
+            //guests table
+            DataColumn[] guestKeys = new DataColumn[1];
+            DataColumn guestColumn = ruffCoDB.Tables["guests"].Columns[0];
+            guestKeys[0] = guestColumn;
+            ruffCoDB.Tables["guests"].PrimaryKey = guestKeys;
+            //guestXReservation table
+            DataColumn[] GXRKeys = new DataColumn[1];
+            DataColumn GXRColumn = ruffCoDB.Tables["ReservationsGuestsXRef"].Columns[0];
+            GXRKeys[0] = GXRColumn;
+            ruffCoDB.Tables["ReservationsGuestsXRef"].PrimaryKey = GXRKeys;
         }
 
         public static void loadPlanes(int index)

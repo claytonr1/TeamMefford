@@ -9,16 +9,16 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DestinationsDB
     {
-        public static List<String> getDestinationsList()
+        public static Dictionary<int, String> getDestinationsList()
         {
             try
             {
-                List<String> destList = new List<string>();
+                Dictionary<int, String> destList = new Dictionary<int, string>();
                 DataRow[] result = DBHandler.ruffCoDB.Tables["destinations"].Select();
 
                 for (int i = 0; i < result.Length; i++)
                 {
-                    destList.Add(Convert.ToString(result[i]["location"]));
+                    destList.Add(Convert.ToInt32(result[i][0]), Convert.ToString(result[i]["location"]));
                 }
                 return destList;
             }
