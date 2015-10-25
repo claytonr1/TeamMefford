@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using RuffCoJetReservationSystem.DBHandlers;
+//using RuffCoJetReservationSystem.DBHandler;
 
-namespace RuffCoWebJetReservationSystem
+namespace RuffCoJetReservationSystem
 {
     public partial class Reservation : System.Web.UI.Page
     {
@@ -19,9 +19,11 @@ namespace RuffCoWebJetReservationSystem
         {
             try //catch errors including sql errors!
             {
-                DBHandler.openConection("Data Source=claytonr1.db.5867809.hostedresource.com;Persist Security Info=True;User ID=claytonr1;Password=Interface1");
-                DBHandler.populateDataSet();
-                DBHandler.closeConnection();
+              //  DBHandler.openConection("Data Source=claytonr1.db.5867809.hostedresource.com;Persist Security Info=True;User ID=claytonr1;Password=Interface1");
+                //DBHandler.populateDataSet();
+               // DBHandler.closeConnection();
+                
+               
             }
             catch (Exception ex)
             {

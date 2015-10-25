@@ -1,6 +1,12 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reservation.aspx.cs" Inherits="RuffCoWebJetReservationSystem.Reservation" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Reservation.aspx.cs" Inherits="RuffCoJetReservationSystem.Reservation" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+  
+    
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

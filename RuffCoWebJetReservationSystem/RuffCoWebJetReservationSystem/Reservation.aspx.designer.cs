@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RuffCoWebJetReservationSystem {
+namespace RuffCoJetReservationSystem {
     
     
     public partial class Reservation {
