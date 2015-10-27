@@ -7,9 +7,9 @@ using System.Data;
 
 namespace RuffCoJetReservationSystem.DBHandlers
 {
-    public static class DestinationsDB
+    public static class DBDestinations
     {
-        public static Dictionary<int, String> getDestinationsList()
+        public static Dictionary<int, String> getDestinationsDictionary()
         {
             try
             {
@@ -21,6 +21,22 @@ namespace RuffCoJetReservationSystem.DBHandlers
                     destList.Add(Convert.ToInt32(result[i][0]), Convert.ToString(result[i]["location"]));
                 }
                 return destList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static List<String> getDestinationsList()
+        {
+            try
+            {
+                Dictionary<int, string> dictionary = new Dictionary<int, string>();
+                dictionary = getDestinationsDictionary();
+                List<string> list = new List<string>();
+                list = dictionary.Values.ToList();
+                return list;
             }
             catch (Exception)
             {

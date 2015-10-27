@@ -10,7 +10,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBPlanes
     {
-        public static Dictionary<int, string> PlanesList()
+        public static Dictionary<int, string> PlaneDictionary()
         {
             try
             {
@@ -22,6 +22,22 @@ namespace RuffCoJetReservationSystem.DBHandlers
                     planeList.Add(Convert.ToInt32(result[i][0]), Convert.ToString(result[i]["name"]));
                 }
                 return planeList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static List<String> planeList()
+        {
+            try
+            {
+                Dictionary<int, string> dictionary = new Dictionary<int, string>();
+                dictionary = PlaneDictionary();
+                List<string> list = new List<string>();
+                list = dictionary.Values.ToList();
+                return list;
             }
             catch (Exception)
             {
