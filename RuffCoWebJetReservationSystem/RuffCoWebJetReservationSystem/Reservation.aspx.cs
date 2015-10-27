@@ -42,6 +42,7 @@ namespace RuffCoJetReservationSystem
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
+            String employee = Label1.Text;
             String jet = jetsDropDownList.SelectedValue;//setting values for variables based on forums selections
             String dest = destinationDropDownList.SelectedValue;
             DateTime date = Calendar1.SelectedDate;
@@ -51,6 +52,7 @@ namespace RuffCoJetReservationSystem
             {
                 date.AddHours(12);
             }
+            DBReservations.RegisterReservation(DBPlanes.getID(jet),DBEmployees.getID(employee),DBDestinations.getID(dest),date);
             
 
         }
