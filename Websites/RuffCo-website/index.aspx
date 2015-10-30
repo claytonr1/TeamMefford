@@ -68,7 +68,7 @@
     
         <table class="auto-style1">
             <tr class="header">
-                <td class="logo"><img src="/images/Logo.png" width="260"/></td>
+                <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
                 <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
                 
@@ -77,7 +77,7 @@
                 <td class="login">
                     <h2>Company Jet Reservation login</h2>
                     <div class="bottomPadding"><asp:Button ID="btnLogin" runat="server" PostBackUrl="~/login.aspx" Text="log in" /></div>
-                    <div><img src="images/plane.jpg" width="100%" style="height: 265px"/></div>
+                    <div><img src="/properties/images/plane.jpg" width="100%" style="height: 265px"/></div>
                 </td>
                 <td class="copy">
                     <h1>RuffCo Jet Reservation Page</h1>

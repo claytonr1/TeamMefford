@@ -48,7 +48,7 @@
         <table  class="auto-style1">
 
              <tr class="header">
-                <td class="logo"><img src="/images/Logo.png" width="260"/></td>
+                <td class="logo"><img src="/properties//images/Logo.png" width="260"/></td>
                 <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
                 
