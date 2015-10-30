@@ -54,7 +54,8 @@
         <table  class="auto-style1">
             <tr class="centerMenu">
                
-                <td>Please log in to continue:</td>
+                <td>Please log in to continue:<asp:Label ID="labelErrorBox" runat="server" ForeColor="Red"></asp:Label>
+                </td>
             </tr>
             <tr class="centerMenu">
                 
@@ -81,15 +82,17 @@
                 </td>
             </tr>
             <tr class="centerMenu">
-                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style3">
+                    Username/pass to use if it populates:<br />
+                    timglor1 123456 </td>
                 &nbsp;
                 <td>
 
-                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" PostBackUrl="~/Menu.aspx" Text="Submit" />
+                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
                 </td>
             </tr>
         </table>
     </form>
         </div>
-</body>
+    </body>
 </html>
