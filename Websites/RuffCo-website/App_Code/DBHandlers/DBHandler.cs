@@ -358,9 +358,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
                 return false;
-                throw e;
             }
         }
 
