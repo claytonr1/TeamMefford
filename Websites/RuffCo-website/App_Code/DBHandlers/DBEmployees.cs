@@ -63,7 +63,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("username = '{0}'", username);
+                string expression = string.Format("user_name = '{0}'", username);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
                 int id = Convert.ToInt32(result[0]["employee_id"]);
                 return id;
@@ -197,7 +197,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("username = '{0}'", username);
+                string expression = string.Format("user_name = '{0}'", username);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select(expression);
                 string password = Convert.ToString(result[0]["password"]);
                 return password;
