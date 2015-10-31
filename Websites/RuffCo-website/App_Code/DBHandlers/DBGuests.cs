@@ -151,27 +151,18 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Registers a guest in the database. Does not check for unique values, will retun false if the command does not complete.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="phone">The phone.</param>
+        /// <param name="employeeID">The employee identifier.</param>
+        /// <returns></returns>
         public static bool registerGuest(string firstName, string lastName, string email, string phone, int employeeID)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["guests"].NewRow();
-
-                newRow["f_name"] = firstName;
-                newRow["l_name"] = lastName;
-                newRow["email"] = email;
-                newRow["phone"] = phone;
-                newRow["employee_id"] = employeeID;
-
-                DBHandler.ruffCoDB.Tables["guests"].Rows.Add(newRow);
-                updateGuests();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.registerGuest(firstName, lastName, email, phone, employeeID);
         }
 
         public static bool setFName()
@@ -194,9 +185,9 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return false;
         }
 
-        public static bool updateGuests()
+        public static void updateGuestsDataTable()
         {
-            return DBHandler.updateGuests();
+            DBHandler.loadGuests();
         }
     }
 }

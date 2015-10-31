@@ -9,11 +9,55 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBReservations
     {
-        public static Dictionary<int, String> getReservationsList()
+        public static SortedDictionary<int, String> getReservationsList()
         {
             try
             {
-                Dictionary<int, String> resList = new Dictionary<int, string>();
+                SortedDictionary<int, String> resList = new SortedDictionary<int, string>();
+                DataRow[] result = DBHandler.ruffCoDB.Tables["reservations"].Select();
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    resList.Add(Convert.ToInt32(result[i]["reservation_id"]), Convert.ToString(result[i]["date"]));
+                }
+                return resList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static SortedDictionary<int, String> getPastReservationsList()
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                string expression = string.Format("date > '{0}'", now);
+                SortedDictionary<int, String> resList = new SortedDictionary<int, string>();
+                DataRow[] result = DBHandler.ruffCoDB.Tables["reservations"].Select();
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    resList.Add(Convert.ToInt32(result[i]["reservation_id"]), Convert.ToString(result[i]["date"]));
+                }
+                return resList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static SortedDictionary<int, String> getFutureReservationsList()
+        {
+            try
+            {
+                DateTime now = DateTime.Now.Date;
+
+                string expression = string.Format("date < '{0}'", now);
+                SortedDictionary<int, String> resList = new SortedDictionary<int, string>();
                 DataRow[] result = DBHandler.ruffCoDB.Tables["reservations"].Select();
 
                 for (int i = 0; i < result.Length; i++)
@@ -185,59 +229,32 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return date;
         }
 
+        /// <summary>
+        /// Registers a reservation without guests. Does not check for unique values, will retun false if the command does not complete.
+        /// </summary>
+        /// <param name="planeID">The plane identifier.</param>
+        /// <param name="employeeID">The employee identifier.</param>
+        /// <param name="destinationID">The destination identifier.</param>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
         public static bool RegisterReservation(int planeID, int employeeID, int destID, DateTime date)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["reservations"].NewRow();
-
-                newRow["plane_id"] = planeID;
-                newRow["employee_id"] = employeeID;
-                newRow["dest_id"] = destID;
-                newRow["date"] = date;
-
-                DBHandler.ruffCoDB.Tables["reservations"].Rows.Add(newRow);
-                updateResDB();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.registerReservation(planeID, employeeID, destID, date);
         }
 
+        /// <summary>
+        /// Registers a reservation with or without guests. Does not check for unique values, will retun false if the command does not complete.
+        /// </summary>
+        /// <param name="planeID">The plane identifier.</param>
+        /// <param name="employeeID">The employee identifier.</param>
+        /// <param name="destinationID">The destination identifier.</param>
+        /// <param name="date">The date.</param>
+        /// <param name="hasGuests">if set to <c>true</c> [has guests].</param>
+        /// <param name="guestsList">The guest's identifier list.</param>
+        /// <returns></returns>
         public static bool RegisterReservation(int planeID, int employeeID, int destID, DateTime date, bool hasGuests, List<int> guestList)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["reservations"].NewRow();
-
-                newRow["plane_id"] = planeID;
-                newRow["employee_id"] = employeeID;
-                newRow["dest_id"] = destID;
-                newRow["date"] = date;
-
-                DBHandler.ruffCoDB.Tables["reservations"].Rows.Add(newRow);
-                updateResDB();
-                
-                if (hasGuests)
-                {
-                    if (guestList.Count != 0)
-                    {
-                        for (int i = 0; i < guestList.Count; i++)
-                        {
-                            addGuestXResRelation(Convert.ToInt32(newRow[0]), Convert.ToInt32(guestList[i]));
-                        }
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.registerReservation(planeID, employeeID, destID, date, hasGuests, guestList);
         }
 
         public static bool setPlane(int reservationID, int planeID)
@@ -260,34 +277,14 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return false;
         }
 
-        public static bool addGuestXResRelation(int resID, int GuestID)
+        public static void updateGuestXResDataTable()
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["ReservationsGuestsXRef"].NewRow();
-
-                newRow["reservation_id"] = resID;
-                newRow["guest_id"] = GuestID;
-
-                DBHandler.ruffCoDB.Tables["planes"].Rows.Add(newRow);
-
-                updateGuestXResDB();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            DBHandler.loadReservationsGuestsXRef();
         }
 
-        public static bool updateGuestXResDB()
+        public static void updateResDataTable()
         {
-            return DBHandler.updateReservationsGuestsXRef();
-        }
-
-        public static bool updateResDB()
-        {
-            return DBHandler.updateReservations();
+            DBHandler.loadReservations();
         }
     }
 }

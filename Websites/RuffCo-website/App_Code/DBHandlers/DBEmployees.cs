@@ -9,6 +9,36 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBEmployees
     {
+        /// <summary>
+        /// Returns a list of Tuples for each employee that contains ID, first name, and last name.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Tuple<int, string, string>> emplyeeList()
+        {
+            try
+            {
+                List<Tuple<int, string, string>> empList = new List<Tuple<int,string,string>>();
+                DataRow[] result = DBHandler.ruffCoDB.Tables["employees"].Select();
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    Tuple<int, string, string> empRow = new Tuple<int, string, string>(Convert.ToInt32(result[i]["employee_id"]), Convert.ToString(result[i]["f_name"]), Convert.ToString(result[i]["l_name"]));
+                    empList.Add(empRow);
+                }
+                return empList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the identifier by using first and last name. Not reliable.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
+        /// <returns></returns>
         public static int getIDByName(string firstName, string lastName)
         {
             try
@@ -24,6 +54,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the identifier by username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public static int getIDByUsername(string username)
         {
             try
@@ -39,6 +74,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the identifier from email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public static int getID(string email)
         {
             try
@@ -54,6 +94,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified username is in use.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public static bool containsUsername(string username)
         {
             try
@@ -76,6 +121,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified email is in use.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public static bool containsEmail(string email)
         {
             try
@@ -98,6 +148,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the username.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string getUserName(int id)
         {
             try
@@ -113,6 +168,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the username associated with the specified email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public static string getUserName(string email)
         {
             try
@@ -128,6 +188,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the password for the specified username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public static string getPassword(string username)
         {
             try
@@ -143,6 +208,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the first name associated with the specified ID.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string getFName(int id)
         {
             try
@@ -158,6 +228,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the first name associated with the specified email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public static string getFName(string email)
         {
             try
@@ -173,6 +248,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the last name associated with the specified ID.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string getLName(int id)
         {
             try
@@ -188,6 +268,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the last name associated with the specified email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public static string getLName(string email)
         {
             try
@@ -203,6 +288,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the email associated with the specified ID.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string getEmail(int id)
         {
             try
@@ -218,6 +308,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the phone associated with the specified ID.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string getPhone(int id)
         {
             try
@@ -233,28 +328,19 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Registers a new employee in the database. Does not check for unique values, will retun false if the command does not complete.
+        /// </summary>
+        /// <param name="firstName">first name.</param>
+        /// <param name="lastName">last name.</param>
+        /// <param name="email">email.</param>
+        /// <param name="phone">phone number.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns></returns>
         public static bool registerEmployee(string firstName, string lastName, string email, string phone, string username, string password)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["employees"].NewRow();
-
-                newRow["f_name"] = firstName;
-                newRow["l_name"] = lastName;
-                newRow["email"] = email;
-                newRow["phone"] = phone;
-                newRow["user_name"] = username;
-                newRow["password"] = password;
-
-                DBHandler.ruffCoDB.Tables["employees"].Rows.Add(newRow);
-                updateEmployees();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.registerEmployee(firstName, lastName, email, phone, username, password);
         }
 
         public static bool setFName()
@@ -287,9 +373,9 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return false;
         }
 
-        public static bool updateEmployees()
+        public static void loadEmployees()
         {
-            return DBHandler.updateEmployees();
+            DBHandler.loadEmployees();
         }
     }
 }

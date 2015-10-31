@@ -9,6 +9,10 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DestinationsDB
     {
+        /// <summary>
+        /// Gets the destinations list as a dictionary. The ID is the key and the destination name is the value.
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<int, String> getDestinationsList()
         {
             try
@@ -28,6 +32,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the identifier for a location.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
         public static int getID(string location)
         {
             try
@@ -43,6 +52,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the location.
+        /// </summary>
+        /// <param name="id">The destination ID.</param>
+        /// <returns></returns>
         public static string getLocation(int id)
         {
             try
@@ -58,6 +72,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the distance from Little Rock.
+        /// </summary>
+        /// <param name="id">The destination ID.</param>
+        /// <returns></returns>
         public static double getDistanceFromLR(int id)
         {
             try
@@ -73,6 +92,11 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Gets the distance from Little Rock.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
         public static double getDistanceFromLR(string location)
         {
             try
@@ -88,35 +112,23 @@ namespace RuffCoJetReservationSystem.DBHandlers
             }
         }
 
+        /// <summary>
+        /// Adds a destination to the database.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="distanceFromLR">The distance from Little Rock.</param>
+        /// <returns>True if succesful</returns>
         public static bool addDestination(string location, double distanceFromLR)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["destinations"].NewRow();
-
-                newRow["location"] = location;
-                newRow["distance_from_LR"] = distanceFromLR;
-
-                DBHandler.ruffCoDB.Tables["destinations"].Rows.Add(newRow);
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.addDestination(location, distanceFromLR);
         }
 
-        public static bool updateDestDB()
+        /// <summary>
+        /// Loads or reloads the destinations.
+        /// </summary>
+        public static void loadDestinations()
         {
-            try
-            {
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            DBHandler.loadDestinations();
         }
     }
 }

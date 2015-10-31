@@ -223,29 +223,9 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return reservation_ids;
         }
 
-        public static bool addPlane(string name, string model, int capacity, double mile_range, string location, double cruiseSpeed)
+        public static bool addPlane(string name, string model, int capacity, double mile_range, string currentLocation, double cruiseSpeed)
         {
-            try
-            {
-                DataRow newRow = DBHandler.ruffCoDB.Tables["planes"].NewRow();
-
-                newRow["name"] = name;
-                newRow["model"] = model;
-                newRow["capacity"] = capacity;
-                newRow["mile_range"] = mile_range;
-                newRow["current_location"] = location;
-                newRow["cruise_speed"] = cruiseSpeed;
-
-                DBHandler.ruffCoDB.Tables["planes"].Rows.Add(newRow);
-                
-                updatePlanesDB();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return DBHandler.addPlane(name, model, capacity, mile_range, currentLocation, cruiseSpeed);
         }
 
         public static bool setName(int id, string name)
@@ -278,9 +258,9 @@ namespace RuffCoJetReservationSystem.DBHandlers
             return false;
         }
 
-        public static bool updatePlanesDB()
+        public static void updatePlanesDataSet()
         {
-            return DBHandler.updatePlanes();
+            DBHandler.loadPlanes();
         }
     }
 }
