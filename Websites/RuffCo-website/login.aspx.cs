@@ -21,18 +21,18 @@ public partial class login : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
        
-        if (DBEmployees.getPassword(txtboxUsername.Text)==txtboxPassword.Text)
-        {
-            CookieHandler.setUserPassword(txtboxUsername.Text, txtboxPassword.Text);
-            HttpContext.Current.Response.Redirect("Menu.aspx"); 
-        }
-        else
-        {
-            txtboxUsername.Text = "";
-            txtboxPassword.Text = "";
-            labelErrorBox.Text = " Username or Password not found";
+// if (DBEmployees.getPassword(txtboxUsername.Text)==txtboxPassword.Text)  
+//      {
+//          CookieHandler.setUserPassword(txtboxUsername.Text, txtboxPassword.Text);
+//          HttpContext.Current.Response.Redirect("Menu.aspx"); 
+//      }
+//      else
+//      {
+//          txtboxUsername.Text = "";
+//          txtboxPassword.Text = "";
+//          labelErrorBox.Text = " Username or Password not found";
 
-        }
+//      }
             
 
     }

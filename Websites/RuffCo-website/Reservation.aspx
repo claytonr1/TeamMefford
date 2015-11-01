@@ -12,7 +12,37 @@
 <head runat="server">
     <title>Reservations</title>
     <style type="text/css">
-        .auto-style1 {
+
+       
+       
+          .logo {
+           
+            width: 30%;
+        }
+        .headerTitle {
+            font-size: 36px;
+            width: 70%;
+            text-align: center;
+            color: #002063;
+        }
+         .header {
+            
+            background-color: #8cf7dd;
+        }
+        .fontSize20 {
+            font-size: 20px;
+        }
+        .container {
+            width: 1100px;
+            background-color: white;
+            padding: 0px 0px 30px 0px;
+        }
+
+         .auto-style1 {
+            width: 100%;
+            
+        }
+        .auto-style8 {
             height: 29px;
         }
         .auto-style2 {
@@ -47,16 +77,27 @@
         }
     </style>
 </head>
-<body>
+<!-- margin 0 auto is to center the content -->
+
+<body style="margin: 0 auto; display: table; background-color: #ededed;">
+
+<!-- Container is to make the page 1100px -->
+  <div class="container">
     <form id="form1" runat="server">
-    <div>
-        <h3>Reservations
-    </h3>
-    </div>
-        <table style="width: 100%; height: 206px;">
+        <table  class="auto-style1">
+
+<!--  The header including the logo -->
+             <tr class="header">
+                <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
+                <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
+                    <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
+             </tr>
+        </table>
+
+        <table style=" height: 206px; margin: 0 auto;">
             <tr>
                 <td class="auto-style4">Name</td>
-                <td class="auto-style1">
+                <td class="auto-style8">
                     <asp:Label ID="Label1" runat="server"></asp:Label>
                 </td>
             </tr>
@@ -102,10 +143,11 @@
                 </td>
             </tr>
         </table>
-        <p>
+        <p style="margin: 0 auto; display: table; padding-left: 210px; ">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Make Reservation" />
+            <asp:Button ID="btnMakeReservation" runat="server" OnClick="Button1_Click" Text="Make Reservation" />
         </p>
     </form>
+  </div>
 </body>
 </html>

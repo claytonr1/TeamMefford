@@ -7,9 +7,6 @@
     <title></title>
     <style type="text/css">
         
-        .auto-style2 {
-            text-align: center;
-        }
          .auto-style1 {
             width: 100%;
             
@@ -39,38 +36,61 @@
         .centerMenu {
             margin: 0 auto;
             display: table;
+            
+        }
+        .menuPaddingAndCenter {
+            text-align: center;
+            padding: 40px 0px;
+        }
+        .tdBackgroundColor {
+            background-color: #e3f5fa;
+            width: 300px;
+        }
+        .menuTable {
+            padding: 20px 0px 30px 0px;
+            margin: 0 auto;
         }
     </style>
 </head>
+
+<!-- margin 0 auto is to center the content -->
+
 <body style="margin: 0 auto; display: table; background-color: #ededed;">
+
+<!-- Container is to make the page 1100px -->
      <div class="container">
     <form id="form1" runat="server">
         <table  class="auto-style1">
 
+<!--  The header including the logo -->
              <tr class="header">
-                <td class="logo"><img src="/properties//images/Logo.png" width="260"/></td>
+                <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
                 <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
-                
-            </tr>
-          </table> 
-        <table  class="auto-style1">
-        <tr class="centerMenu">
+             </tr>
+        </table>
+        
+<!--  The menu buttons -->        
+        <table class="menuTable">
+        <tr class="centerMenu tdBackgroundColor">
             
-            <td style="text-align: center">&nbsp;<asp:Button ID="btnViewExistingInformation" runat="server" PostBackUrl="~/View.aspx" Text="View existing information" />
+            <td class="menuPaddingAndCenter">&nbsp;<asp:Button ID="btnViewExistingInformation" runat="server" PostBackUrl="~/View.aspx" Text="View existing information" OnClick="btnViewExistingInformation_Click" />
             </td>
         </tr>
-        <tr class="centerMenu">
-            <td style="text-align: center">Create new reservation</td>
+        <tr class="centerMenu tdBackgroundColor">
+            <td class="menuPaddingAndCenter">
+                <asp:Button ID="btnNewReservation" runat="server" Text="Create new reservation" Width="194px" OnClick="btnNewReservation_Click" PostBackUrl="~/Reservation.aspx" />
+            </td>
+            
         </tr>
-        <tr>
-            <td style="text-align: center">Add new data (employee, planes, etc)</td>
+       
+        <tr class="centerMenu tdBackgroundColor">
+            <td class="menuPaddingAndCenter">
+                <asp:Button ID="btnAdmin" runat="server" Text="admin" />
+            </td>
         </tr>
-        <tr>
-            <td class="auto-style2">admin</td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
+        <tr class="centerMenu tdBackgroundColor">
+            <td class="menuPaddingAndCenter">
                 <asp:Button ID="Button2" runat="server" Text="Clear cookies (currently broken)" />
             </td>
         </tr>

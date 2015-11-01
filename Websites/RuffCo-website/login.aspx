@@ -88,7 +88,7 @@
                 &nbsp;
                 <td>
 
-                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" PostBackUrl="~/Menu.aspx" />
                 </td>
             </tr>
         </table>
