@@ -13,7 +13,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         /// Returns a list of Tuples for each employee that contains ID, first name, and last name.
         /// </summary>
         /// <returns></returns>
-        public static List<Tuple<int, string, string>> emplyeeList()
+        public static List<Tuple<int, string, string>> employeeList()
         {
             try
             {
