@@ -9,6 +9,9 @@ public partial class View : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CookieHandler.checkLogin();  
+        Label1.Text = CookieHandler.getUsername();
+        Label2.Text = CookieHandler.getPassword();
+        Label3.Text = CookieHandler.getID().ToString();
     }
 }

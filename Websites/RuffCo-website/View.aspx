@@ -13,25 +13,23 @@
         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Menu.aspx" Text="Back" />
         <br />
         <br />
-        Your current login info: //currently broken, out of context saving cookie<br />
+        Your current login info:<br />
    
         <br />
+        Username:
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <br />
+        Password:
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         <br />
-        Destinations:</div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="dest_id" DataSourceID="RuffcoDestinations" Height="271px" style="margin-top: 41px" Width="473px">
-            <Columns>
-                <asp:BoundField DataField="dest_id" HeaderText="dest_id" InsertVisible="False" ReadOnly="True" SortExpression="dest_id" />
-                <asp:BoundField DataField="location" HeaderText="location" SortExpression="location" />
-                <asp:BoundField DataField="distance_from_LR" HeaderText="distance_from_LR" SortExpression="distance_from_LR" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="RuffcoDestinations" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoDestinations]"></asp:SqlDataSource>
+        UserID:
+        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
         <br />
-        Employees:<br />
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="employee_id" DataSourceID="RuffcoEmployees">
+        <br />
+        Employees table:<br />
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="employee_id" DataSourceID="EmployeesDB">
             <Columns>
                 <asp:BoundField DataField="employee_id" HeaderText="employee_id" InsertVisible="False" ReadOnly="True" SortExpression="employee_id" />
                 <asp:BoundField DataField="f_name" HeaderText="f_name" SortExpression="f_name" />
@@ -42,11 +40,25 @@
                 <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="RuffcoEmployees" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoEmployees]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="EmployeesDB" runat="server" ConnectionString="<%$ ConnectionStrings:claytonr1ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoEmployees]"></asp:SqlDataSource>
         <br />
-        Planes:<br />
         <br />
-        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="plane_id" DataSourceID="RuffcoPlanes">
+        <br />
+        Destinations table:<br />
+        <br />
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="dest_id" DataSourceID="DestinationsDB">
+            <Columns>
+                <asp:BoundField DataField="dest_id" HeaderText="dest_id" InsertVisible="False" ReadOnly="True" SortExpression="dest_id" />
+                <asp:BoundField DataField="location" HeaderText="location" SortExpression="location" />
+                <asp:BoundField DataField="distance_from_LR" HeaderText="distance_from_LR" SortExpression="distance_from_LR" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="DestinationsDB" runat="server" ConnectionString="<%$ ConnectionStrings:claytonr1ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoDestinations]"></asp:SqlDataSource>
+        <br />
+        <br />
+        <br />
+        Planes table:<br />
+        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="plane_id" DataSourceID="PlanesDB">
             <Columns>
                 <asp:BoundField DataField="plane_id" HeaderText="plane_id" InsertVisible="False" ReadOnly="True" SortExpression="plane_id" />
                 <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
@@ -57,12 +69,13 @@
                 <asp:BoundField DataField="cruise_speed" HeaderText="cruise_speed" SortExpression="cruise_speed" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="RuffcoPlanes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoPlanes]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="PlanesDB" runat="server" ConnectionString="<%$ ConnectionStrings:claytonr1ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoPlanes]"></asp:SqlDataSource>
         <br />
         <br />
-        Reservations:<br />
         <br />
-        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataKeyNames="reservation_id" DataSourceID="RuffcoReservations">
+        Reservations table:<br />
+        <br />
+        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataKeyNames="reservation_id" DataSourceID="reservationsDB">
             <Columns>
                 <asp:BoundField DataField="reservation_id" HeaderText="reservation_id" InsertVisible="False" ReadOnly="True" SortExpression="reservation_id" />
                 <asp:BoundField DataField="plane_id" HeaderText="plane_id" SortExpression="plane_id" />
@@ -71,7 +84,9 @@
                 <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="RuffcoReservations" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoReservations]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="reservationsDB" runat="server" ConnectionString="<%$ ConnectionStrings:claytonr1ConnectionString %>" SelectCommand="SELECT * FROM [RuffCoReservations]"></asp:SqlDataSource>
+        <br />
+        </div>
     </form>
 </body>
 </html>

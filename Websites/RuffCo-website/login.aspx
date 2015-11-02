@@ -83,12 +83,12 @@
             </tr>
             <tr class="centerMenu">
                 <td class="auto-style3">
-                    Username/pass to use if it populates:<br />
+                    Username/pass to use (or any in database)<br />
                     timglor1 123456 </td>
                 &nbsp;
                 <td>
 
-                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" PostBackUrl="~/Menu.aspx" />
+                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
                 </td>
             </tr>
         </table>

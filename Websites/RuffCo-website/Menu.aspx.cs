@@ -9,7 +9,8 @@ public partial class Menu : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //CookieHandler.checkLogin();   this is redirecting to the login if it is here alone?????
+        // This is a login check that redirects to login page if there is no valid login cookie.  
+        CookieHandler.checkLogin();   
     }
     protected void btnViewExistingInformation_Click(object sender, EventArgs e)
     {
@@ -18,5 +19,9 @@ public partial class Menu : System.Web.UI.Page
     protected void btnNewReservation_Click(object sender, EventArgs e)
     {
 
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        CookieHandler.clearUserPassword();
     }
 }

@@ -12,13 +12,13 @@ public static class CookieHandler
         {
 
             HttpContext.Current.Response.Cookies["Username"].Value = username;
-            HttpContext.Current.Response.Cookies["Pasword"].Value = password;
+            HttpContext.Current.Response.Cookies["Password"].Value = password;
         }
 
         public static void clearUserPassword() //logout button
         {
             HttpContext.Current.Response.Cookies["Username"].Value = String.Empty;
-            HttpContext.Current.Response.Cookies["Pasword"].Value = String.Empty;
+            HttpContext.Current.Response.Cookies["Password"].Value = String.Empty;
         }
 
         public static string getUsername() //returns string of username stored in cookie, should have a check for if "none"
@@ -26,7 +26,7 @@ public static class CookieHandler
             string response = "none";
             try 
             {
-                response = HttpContext.Current.Request.Cookies["Username"].ToString();
+                response = HttpContext.Current.Request.Cookies["Username"].Value;
             }
             catch (Exception)
             {
@@ -39,7 +39,7 @@ public static class CookieHandler
             string response = "none";
             try 
             {
-                response = HttpContext.Current.Request.Cookies["Password"].ToString();
+                response = HttpContext.Current.Request.Cookies["Password"].Value;
             }
             catch (Exception)
             {
@@ -63,6 +63,16 @@ public static class CookieHandler
             
             }
 
+        }
+
+        public static int getID()
+        {
+            return DBEmployees.getIDByUsername(getUsername());
+        }
+
+        public static string getUserFullName()
+        {
+            return DBEmployees.getFName(CookieHandler.getID()) + " " + DBEmployees.getLName(CookieHandler.getID());
         }
 }
 
