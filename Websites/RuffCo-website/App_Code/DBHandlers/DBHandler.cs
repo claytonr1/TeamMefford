@@ -421,6 +421,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
                     openConection();
                 }
 
+                //Registers the reservation
                 cmd = new SqlCommand("INSERT INTO " + RESERVATIONS_TABLE + " (plane_id,employee_id,dest_id,date) VALUES (@planeID, @employeeID, @destID, @date);", sql);
                 cmd.Parameters.Add("@planeID", SqlDbType.Int);
                 cmd.Parameters.Add("@employeeID", SqlDbType.Int);
@@ -431,14 +432,16 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 cmd.Parameters["@employeeID"].Value = employeeID;
                 cmd.Parameters["@destID"].Value = destinationID;
                 cmd.Parameters["@date"].Value = date;
+
                 cmd.ExecuteNonQuery();
 
+                //Registers the guests
                 if (hasGuests && (guestsIDList != null))
                 {
                     SortedDictionary<int, string> resList = DBReservations.getReservationsList();
                     int resID = resList.Last().Key;
 
-                    for (int i = 1; i < guestsIDList.Count; i++)
+                    for (int i = 0; i < guestsIDList.Count; i++)
                     {
                         int guestID = guestsIDList.ElementAt(i);
 
