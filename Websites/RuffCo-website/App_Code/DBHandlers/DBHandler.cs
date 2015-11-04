@@ -434,6 +434,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 cmd.Parameters["@date"].Value = date;
 
                 cmd.ExecuteNonQuery();
+                loadReservations();
 
                 //Registers the guests
                 if (hasGuests && (guestsIDList != null))
@@ -460,7 +461,6 @@ namespace RuffCoJetReservationSystem.DBHandlers
 
                 closeConnection();
 
-                loadReservations();
                 return true;
             }
             catch (Exception)
