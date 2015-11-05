@@ -10,10 +10,32 @@ namespace RuffCoJetReservationSystem.DBHandlers
     public static class DestinationsDB
     {
         /// <summary>
+        /// Gets the destinations list as a list of values only. The ID is the key and the destination name is the value.
+        /// NOTE: This function is dependant getDestinationDictionary()
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        public static List<String> getDestinationsList()  
+        {  
+            try  
+            {  
+                Dictionary<int, string> dictionary = new Dictionary<int, string>();  
+                dictionary = getDestinationsDictionary();  
+                List<string> list = new List<string>();  
+                list = dictionary.Values.ToList();  
+                return list;  
+            }  
+            catch (Exception)  
+            {  
+                return null;  
+            }  
+        }
+        /// <summary>
         /// Gets the destinations list as a dictionary. The ID is the key and the destination name is the value.
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<int, String> getDestinationsList()
+        ///
+        public static Dictionary<int, String> getDestinationsDictionary()
         {
             try
             {
