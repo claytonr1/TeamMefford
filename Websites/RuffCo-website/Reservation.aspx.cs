@@ -10,7 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using RuffCoJetReservationSystem.DBHandlers;
-//using RuffCoJetReservationSystem.DBHandler;
+
 
 namespace RuffCoJetReservationSystem
 {
@@ -18,27 +18,31 @@ namespace RuffCoJetReservationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //CookieHandler.checkLogin(); // This is a login check that redirects to login page if there is no valid login cookie.  
-            // I'll leave it disabled for now so that you don't have to
-            // log in every time you test something, though the name will not populate unless you do.
-
-
+            
             try //catch errors including sql errors!
             {
-              //  DBHandler.openConection("Data Source=claytonr1.db.5867809.hostedresource.com;Persist Security Info=True;User ID=claytonr1;Password=Interface1");
-                //DBHandler.populateDataSet();
-               // DBHandler.closeConnection();
-                
-               
+                CookieHandler.checkLogin(); //this populates the name of the current user into the Label1 textbox
+                Label1.Text = CookieHandler.getUserFullName();
+
+                String[] destList;
+                destList = DBDestinations.getDestinationsList().ToArray();
+                foreach (string s in destList)
+                {
+                    destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+                }
+                String[] planeList;
+                planeList = DBPlanes.PlanesList().ToArray();
+                foreach (string s in planeList)
+                {
+                    jetsDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            //this populates the name of the current user into the Label1 textbox
-            Label1.Text = CookieHandler.getUserFullName();
+            
 
             /* The way I wrote it only allows for booking of the current user, should this be switched to something   
              * like this?
@@ -62,7 +66,19 @@ namespace RuffCoJetReservationSystem
             //What data needs to be saved to be taken to the next page for a confirmation window?
             // perhaps these?
             // int EmployeeIDbeingBooked, int PlaneIDbeingBooked, int DestinationID1, int DestinationID2, int SeatNumber
-             
+
+            String employee = Label1.Text;//setting values for variables based on forums selections -ksm
+            String jet = jetsDropDownList.SelectedValue;
+            String dest = destinationDropDownList.SelectedValue;
+            DateTime date = Calendar1.SelectedDate;
+            date.AddHours(Convert.ToInt32(hourBox.Text));
+            date.AddMinutes(Convert.ToInt32(minuteBox.Text));
+            if (ampmDropDownList.SelectedValue == "PM")
+            {
+                date.AddHours(12);
+            }
+            DBReservations.RegisterReservation(DBPlanes.getID(jet), DBEmployees.getID(employee), DBDestinations.getID(dest), date);
+
             
 
         }
