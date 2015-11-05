@@ -7,7 +7,7 @@ using System.Data;
 
 namespace RuffCoJetReservationSystem.DBHandlers
 {
-    public static class DestinationsDB
+    public static class DBDestinations
     {
         /// <summary>
         /// Gets the destinations list as a list of values only. The ID is the key and the destination name is the value.
