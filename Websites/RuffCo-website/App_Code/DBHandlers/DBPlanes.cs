@@ -49,7 +49,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("name = {0}", name);
+                string expression = string.Format("name = '{0}'", name);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["planes"].Select(expression);
                 int id = Convert.ToInt32(result[0][0]);
                 return id;
