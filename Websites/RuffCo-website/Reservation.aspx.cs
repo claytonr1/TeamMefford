@@ -21,7 +21,10 @@ namespace RuffCoJetReservationSystem
             
             try //catch errors including sql errors!
             {
-                CookieHandler.checkLogin(); //this populates the name of the current user into the Label1 textbox
+                //login check
+                CookieHandler.checkLogin(); 
+                
+                //this populates the name of the current user into the Label1 textbox
                 Label1.Text = CookieHandler.getUserFullName();
 
                 String[] destList;
@@ -62,17 +65,27 @@ namespace RuffCoJetReservationSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            /*
             //What data needs to be saved to be taken to the next page for a confirmation window?
             // perhaps these?
             // int EmployeeIDbeingBooked, int PlaneIDbeingBooked, int DestinationID1, int DestinationID2, int SeatNumber
-
+                // I don't need this any more, can delete --NM
+             */
+     
             //Commented out unesessary code.
             //String employee = Label1.Text;//setting values for variables based on forums selections -ksm
+            
+
             
             String jet = jetsDropDownList.SelectedValue;
             String dest = destinationDropDownList.SelectedValue;
             DateTime date = Calendar1.SelectedDate;
+
+            //sets cookies for use in results page
+            CookieHandler.setCookie("jet", jetsDropDownList.SelectedValue);
+            CookieHandler.setCookie("dest", destinationDropDownList.SelectedValue);
+            CookieHandler.setCookie("date", Calendar1.SelectedDate.ToString());
+
 
             //date.AddHours(Convert.ToInt32(hourBox.Text));
             //date.AddMinutes(Convert.ToInt32(minuteBox.Text));
@@ -95,6 +108,9 @@ namespace RuffCoJetReservationSystem
             }
 
             DBReservations.RegisterReservation(DBPlanes.getID(jet), CookieHandler.getID(), DBDestinations.getID(dest), date);
+
+            //change page to results
+            HttpContext.Current.Response.Redirect("Results.aspx"); 
         }
     }
 }

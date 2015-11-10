@@ -146,6 +146,8 @@
         <p style="margin: 0 auto; display: table; padding-left: 210px; ">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnMakeReservation" runat="server" OnClick="Button1_Click" Text="Make Reservation" />
+    
+        <asp:Button ID="Button1" runat="server" PostBackUrl="~/Menu.aspx" Text="Back" />
         </p>
     </form>
   </div>

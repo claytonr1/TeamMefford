@@ -65,14 +65,28 @@ public static class CookieHandler
 
         }
 
+        //returns current user's ID number
         public static int getID()
         {
             return DBEmployees.getIDByUsername(getUsername());
         }
 
+        //returns current user's first + last name
         public static string getUserFullName()
         {
             return DBEmployees.getFName(CookieHandler.getID()) + " " + DBEmployees.getLName(CookieHandler.getID());
+        }
+
+        //generic create new cookie method
+        public static void setCookie(string CookieName, string CookieValue)
+        {
+            HttpContext.Current.Response.Cookies[CookieName].Value = CookieValue;
+        }
+
+        //generic return cookie's value as string method
+        public static string getCookieValue(string CookieName)
+        {
+            return HttpContext.Current.Request.Cookies[CookieName].Value;
         }
 }
 
