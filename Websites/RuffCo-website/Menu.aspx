@@ -91,7 +91,7 @@
         </tr>
         <tr class="centerMenu tdBackgroundColor">
             <td class="menuPaddingAndCenter">
-                <asp:Button ID="Button2" runat="server" Text="Clear cookies" OnClick="Button2_Click" />
+                <asp:Button ID="Button2" runat="server" Text="Log out" OnClick="Button2_Click" />
             </td>
         </tr>
            

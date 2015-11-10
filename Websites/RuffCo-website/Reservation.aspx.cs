@@ -22,7 +22,8 @@ namespace RuffCoJetReservationSystem
             try //catch errors including sql errors!
             {
                 //login check
-                CookieHandler.checkLogin(); 
+                CookieHandler.checkLogin();
+                CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
                 
                 //this populates the name of the current user into the Label1 textbox
                 Label1.Text = CookieHandler.getUserFullName();
@@ -81,10 +82,8 @@ namespace RuffCoJetReservationSystem
             String dest = destinationDropDownList.SelectedValue;
             DateTime date = Calendar1.SelectedDate;
 
-            //sets cookies for use in results page
-            CookieHandler.setCookie("jet", jetsDropDownList.SelectedValue);
-            CookieHandler.setCookie("dest", destinationDropDownList.SelectedValue);
-            CookieHandler.setCookie("date", Calendar1.SelectedDate.ToString());
+       
+            
 
 
             //date.AddHours(Convert.ToInt32(hourBox.Text));
@@ -109,6 +108,10 @@ namespace RuffCoJetReservationSystem
 
             DBReservations.RegisterReservation(DBPlanes.getID(jet), CookieHandler.getID(), DBDestinations.getID(dest), date);
 
+            //sets cookies for use in results page
+            CookieHandler.setCookie("jet", jetsDropDownList.SelectedValue);
+            CookieHandler.setCookie("dest", destinationDropDownList.SelectedValue);
+            CookieHandler.setCookie("date", date.ToString());
             //change page to results
             HttpContext.Current.Response.Redirect("Results.aspx"); 
         }

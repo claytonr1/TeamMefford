@@ -88,6 +88,13 @@ public static class CookieHandler
         {
             return HttpContext.Current.Request.Cookies[CookieName].Value;
         }
+
+        public static void clearResultsCookies()
+        {
+            CookieHandler.setCookie("jet", string.Empty);
+            CookieHandler.setCookie("dest", string.Empty);
+            CookieHandler.setCookie("date", string.Empty);
+        }
 }
 
 	
