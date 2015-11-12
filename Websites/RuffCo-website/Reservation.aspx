@@ -148,6 +148,7 @@
             <asp:Button ID="btnMakeReservation" runat="server" OnClick="Button1_Click" Text="Make Reservation" />
     
         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Menu.aspx" Text="Back" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="log out" />
         </p>
     </form>
   </div>

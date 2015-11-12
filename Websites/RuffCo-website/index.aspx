@@ -85,14 +85,12 @@
 Non venenatis. Potenti a non. Sit facilisi erat viverra in, sapien vestibulum ac phasellus ipsum, placerat qui consequat lobortis mi, interdum ligula magnis nunc amet.</p><p> Integer curabitur ut, ut consectetuer mattis dignissim nulla habitant etiam, aliquam eget ullamcorper elit nunc consectetur. Velit adipiscing imperdiet enim libero. Eu sagittis aliquam praesent, massa lacus ullamcorper phasellus. Quis eros mollis nibh nunc luctus, et volutpat amet id, vitae nibh.</p>
 <p>Morbi mauris, tellus maecenas orci tellus fusce cum ligula. Leo imperdiet culpa in. Nullam mauris magna molestie, dolor non metus, consequat neque mi quis sed pede dictum, nunc aliquet non in aliquam. Ipsum vivamus imperdiet arcu convallis iusto sociosqu. Aenean amet et ante eleifend massa sed, ligula libero enim aliquam id, sodales mauris suscipit, aliquam sodales sed diam faucibus ipsum hendrerit, magnis non id. Nam massa est venenatis. Enim curabitur. Nibh at tortor a odio. Quis nibh lorem, wisi varius sapien, mi facilisis sed bibendum luctus dignissim. Nulla iaculis, enim orci lectus sed venenatis magna voluptate.</p></td>
             </tr>
-            <tr>
-                
-                
-                
-                <td class="footer">@copyright 2015</td>
-            </tr>
+
         </table>
-    
+    <div style="margin: 0 auto;">
+                      <p class="footer" style="float: left;">@copyright 2015</p>
+                      <a href="credits.html" style="float:right; padding-top: 10px; ">Credits</a>
+                     </div>
     </div>
     </form>
         </div>

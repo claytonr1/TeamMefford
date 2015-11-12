@@ -14,4 +14,8 @@ public partial class View : System.Web.UI.Page
         Label2.Text = CookieHandler.getPassword();
         Label3.Text = CookieHandler.getID().ToString();
     }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        CookieHandler.clearUserPassword();
+    }
 }

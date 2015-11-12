@@ -115,5 +115,9 @@ namespace RuffCoJetReservationSystem
             //change page to results
             HttpContext.Current.Response.Redirect("Results.aspx"); 
         }
-    }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            CookieHandler.clearUserPassword();
+        }
+}
 }
