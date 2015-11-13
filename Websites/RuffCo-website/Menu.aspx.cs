@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using RuffCoJetReservationSystem.DBHandlers;
 
 public partial class Menu : System.Web.UI.Page
 {
@@ -23,5 +24,9 @@ public partial class Menu : System.Web.UI.Page
     protected void Button2_Click(object sender, EventArgs e)
     {
         CookieHandler.clearUserPassword();
+    }
+    protected void btnAdmin_Click(object sender, EventArgs e)
+    {
+        DBHandler.clearReservations();
     }
 }

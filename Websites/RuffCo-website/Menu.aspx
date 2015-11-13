@@ -86,7 +86,7 @@
        
         <tr class="centerMenu tdBackgroundColor">
             <td class="menuPaddingAndCenter">
-                <asp:Button ID="btnAdmin" runat="server" Text="admin" />
+                <asp:Button ID="btnAdmin" runat="server" Text="clearReservations" OnClick="btnAdmin_Click" />
             </td>
         </tr>
         <tr class="centerMenu tdBackgroundColor">

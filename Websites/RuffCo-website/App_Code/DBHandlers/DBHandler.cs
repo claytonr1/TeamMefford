@@ -25,7 +25,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
 
         private static SqlConnection sql = new SqlConnection(CONNECTION_STRING);
         private static SqlDataReader reader;
-        private static SqlCommand cmd;
+        private static SqlCommand cmd = new SqlCommand();
 
         private static SqlDataAdapter adapter = new SqlDataAdapter();
         private static SqlDataAdapter adapterPlanes = new SqlDataAdapter("SELECT * FROM " + PLANES_TABLE, sql);
@@ -284,6 +284,27 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 reservations.TableName = "reservations";
                 adapterReservations.Fill(reservations);
                 ruffCoDB.Tables.Add(reservations);
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+        }
+
+        public static void clearReservations() //Clears all records from reservations table from database and updates Dataset. Needed for testing -ksm
+        {
+            try
+            {
+                if (!(sql.State == ConnectionState.Open))
+                {
+                    openConection();
+                }
+                cmd.CommandText = "TRUNCATE TABLE RuffCoReservations";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = sql;
+                reader = cmd.ExecuteReader();
+                closeConnection();
+                DBReservations.updateResDataTable();
             }
             catch (SqlException e)
             {
