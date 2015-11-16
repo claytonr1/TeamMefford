@@ -278,5 +278,14 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             DBHandler.loadPlanes();
         }
+
+        /// <summary>
+        /// Clears the database table. Returns False if the command did not complete.
+        /// </summary>
+        /// <returns></returns>
+        public static bool clearDB()
+        {
+            return DBHandler.clearDataTables(DBHandler.PLANES_TABLE);
+        }
     }
 }

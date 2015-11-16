@@ -16,6 +16,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         /// </summary>
         public const string CONNECTION_STRING = "Data Source=claytonr1.db.5867809.hostedresource.com;Persist Security Info=True;User ID=claytonr1;Password=Interface1";
 
+        //DataBase Tables
         public const string EMPLOYEES_TABLE = "RuffCoEmployees";
         public const string PLANES_TABLE = "RuffCoPlanes";
         public const string RESERVATIONS_TABLE = "RuffCoReservations";
@@ -284,27 +285,6 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 reservations.TableName = "reservations";
                 adapterReservations.Fill(reservations);
                 ruffCoDB.Tables.Add(reservations);
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-        }
-
-        public static void clearReservations() //Clears all records from reservations table from database and updates Dataset. Needed for testing -ksm
-        {
-            try
-            {
-                if (!(sql.State == ConnectionState.Open))
-                {
-                    openConection();
-                }
-                cmd.CommandText = "TRUNCATE TABLE RuffCoReservations";
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = sql;
-                reader = cmd.ExecuteReader();
-                closeConnection();
-                DBReservations.updateResDataTable();
             }
             catch (SqlException e)
             {
@@ -611,6 +591,204 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 return true;
             }
             catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Clears all data tables. Returns false if the command does not complete.
+        /// </summary>
+        /// <returns></returns>
+        public static bool clearDataTables()
+        {
+            try
+            {
+                if (!(sql.State == ConnectionState.Open))
+                {
+                    openConection();
+                }
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + PLANES_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + EMPLOYEES_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + RESERVATIONS_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + DESTINATIONS_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + GUESTS_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("TRUNCATE TABLE " + GUESTS_X_RES_TABLE + ";", sql);
+                cmd.ExecuteNonQuery();
+
+                closeConnection();
+
+                loadPlanes();
+                loadEmployees();
+                loadDestinations();
+                loadGuests();
+                loadReservations();
+                loadReservationsGuestsXRef();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Clears the specified data table. Returns false if the command does not complete.
+        /// </summary>
+        /// <param name="tableName">Name of the table. (EX: DBHandler.EMPLOYEES_TABLE)</param>
+        /// <returns></returns>
+        public static bool clearDataTables(string tableName)
+        {
+            if (tableName == PLANES_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + PLANES_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadPlanes();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            if (tableName == DESTINATIONS_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + DESTINATIONS_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadDestinations();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            if (tableName == RESERVATIONS_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + RESERVATIONS_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadReservations();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            if (tableName == EMPLOYEES_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + EMPLOYEES_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadEmployees();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            if (tableName == GUESTS_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + GUESTS_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadGuests();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            if (tableName == GUESTS_X_RES_TABLE)
+            {
+                try
+                {
+                    if (!(sql.State == ConnectionState.Open))
+                    {
+                        openConection();
+                    }
+
+                    cmd = new SqlCommand("TRUNCATE TABLE " + GUESTS_X_RES_TABLE + ";", sql);
+
+                    cmd.ExecuteNonQuery();
+
+                    closeConnection();
+
+                    loadReservationsGuestsXRef();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            else
             {
                 return false;
             }
