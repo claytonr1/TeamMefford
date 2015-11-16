@@ -27,6 +27,6 @@ public partial class Menu : System.Web.UI.Page
     }
     protected void btnAdmin_Click(object sender, EventArgs e)
     {
-        DBHandler.clearReservations();
+        DBReservations.clearDB();
     }
 }
