@@ -21,6 +21,7 @@ namespace RuffCoJetReservationSystem
             
             try //catch errors including sql errors!
             {
+                Calendar1.SelectedDate = DateTime.Now;
                 //login check
                 CookieHandler.checkLogin();
                 CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
@@ -28,17 +29,21 @@ namespace RuffCoJetReservationSystem
                 //this populates the name of the current user into the Label1 textbox
                 Label1.Text = CookieHandler.getUserFullName();
 
-                String[] destList;
-                destList = DBDestinations.getDestinationsList().ToArray();
-                foreach (string s in destList)
+                if (!IsPostBack)
                 {
-                    destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
-                }
-                String[] planeList;
-                planeList = DBPlanes.PlanesList().ToArray();
-                foreach (string s in planeList)
-                {
-                    jetsDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+                    String[] destList;
+                    destList = DBDestinations.getDestinationsList().ToArray();
+                    foreach (string s in destList)
+                    {
+                        destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+                    }
+                    String[] planeList;
+                    planeList = DBPlanes.PlanesList().ToArray();
+                    foreach (string s in planeList)
+                    {
+                        jetsDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+
+                    }
                 }
             }
             catch (Exception ex)
