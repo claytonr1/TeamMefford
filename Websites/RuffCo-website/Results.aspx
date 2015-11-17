@@ -71,7 +71,7 @@
 <!--  The header including the logo -->
              <tr class="header">
                 <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
-                <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
+                <td class="headerTitle"><strong>Ruff Co. Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
              </tr>
         </table>
@@ -79,7 +79,7 @@
         <div class="container" style="margin: 0 auto;">
     <h2>
         <br />
-        Thank you for booking on Ruffco Airlines!</h2>
+        Thank you for booking on Ruff Co. Airlines!</h2>
     <h3>
         This is your reservation, please print this page for your records.</h3>
     
@@ -102,7 +102,7 @@
             <asp:Button ID="btnPrint" runat="server" Height="62px" Text="Print" Width="297px" OnClientClick="javascript:window.print();" />
         </p>
         <p>
-            <asp:Button ID="btnMenu" runat="server" Height="48px" PostBackUrl="~/Menu.aspx" Text="Return to menu" Width="299px" />
+            <asp:Button ID="btnMenu" runat="server" Height="48px" PostBackUrl="~/Menu.aspx" Text="Return to Menu" Width="299px" />
         </p>
     <div style="padding-bottom: 20px; margin: 0 auto;">
          <a href="credits.html">Credits</a>

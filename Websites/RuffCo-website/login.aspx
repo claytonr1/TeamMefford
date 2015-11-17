@@ -46,7 +46,7 @@
 
              <tr class="header">
                 <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
-                <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
+                <td class="headerTitle"><strong>Ruff Co. Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
                 
             </tr>
