@@ -11,7 +11,7 @@
     <div>
     
         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Menu.aspx" Text="Back" />&nbsp;
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="logout" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Log Out" />
         <br />
         <br />
         Your current login info:<br />

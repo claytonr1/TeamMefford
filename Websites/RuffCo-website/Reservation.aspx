@@ -89,7 +89,7 @@
 <!--  The header including the logo -->
              <tr class="header">
                 <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
-                <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
+                <td class="headerTitle"><strong>Ruff Co. Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
              </tr>
         </table>
@@ -148,7 +148,7 @@
             <asp:Button ID="btnMakeReservation" runat="server" OnClick="Button1_Click" Text="Make Reservation" />
     
         <asp:Button ID="Button1" runat="server" PostBackUrl="~/Menu.aspx" Text="Back" />
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="log out" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Log Out" />
         </p>
     </form>
   </div>

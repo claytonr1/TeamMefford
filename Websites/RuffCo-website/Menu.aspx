@@ -65,7 +65,7 @@
 <!--  The header including the logo -->
              <tr class="header">
                 <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
-                <td class="headerTitle"><strong>Ruffco Airlines</strong><br />
+                <td class="headerTitle"><strong>Ruff Co. Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
              </tr>
         </table>
@@ -74,24 +74,24 @@
         <table class="menuTable">
         <tr class="centerMenu tdBackgroundColor">
             
-            <td class="menuPaddingAndCenter">&nbsp;<asp:Button ID="btnViewExistingInformation" runat="server" PostBackUrl="~/View.aspx" Text="View existing information" OnClick="btnViewExistingInformation_Click" />
+            <td class="menuPaddingAndCenter">&nbsp;<asp:Button ID="btnViewExistingInformation" runat="server" PostBackUrl="~/View.aspx" Text="View Existing Information" OnClick="btnViewExistingInformation_Click" />
             </td>
         </tr>
         <tr class="centerMenu tdBackgroundColor">
             <td class="menuPaddingAndCenter">
-                <asp:Button ID="btnNewReservation" runat="server" Text="Create new reservation" Width="194px" OnClick="btnNewReservation_Click" PostBackUrl="~/Reservation.aspx" />
+                <asp:Button ID="btnNewReservation" runat="server" Text="Create New Reservation" Width="194px" OnClick="btnNewReservation_Click" PostBackUrl="~/Reservation.aspx" />
             </td>
             
         </tr>
        
         <tr class="centerMenu tdBackgroundColor">
             <td class="menuPaddingAndCenter">
-                <asp:Button ID="btnAdmin" runat="server" Text="clearReservations" OnClick="btnAdmin_Click" />
+                <asp:Button ID="btnAdmin" runat="server" Text="Clear Reservations" OnClick="btnAdmin_Click" />
             </td>
         </tr>
         <tr class="centerMenu tdBackgroundColor">
             <td class="menuPaddingAndCenter">
-                <asp:Button ID="Button2" runat="server" Text="Log out" OnClick="Button2_Click" />
+                <asp:Button ID="Button2" runat="server" Text="Log Out" OnClick="Button2_Click" />
             </td>
         </tr>
            
