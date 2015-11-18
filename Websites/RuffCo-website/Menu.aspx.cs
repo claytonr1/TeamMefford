@@ -11,7 +11,15 @@ public partial class Menu : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         // This is a login check that redirects to login page if there is no valid login cookie.  
-        CookieHandler.checkLogin();   
+        CookieHandler.checkLogin();
+        if (!IsPostBack)
+        {
+            List<string> Reservations = DBReservations.getReservationsByEmployee(CookieHandler.getID()); // updates database based on current Reservations -ksm
+            foreach (string s in Reservations)
+            {
+ 
+            }
+        }
     }
     protected void btnViewExistingInformation_Click(object sender, EventArgs e)
     {

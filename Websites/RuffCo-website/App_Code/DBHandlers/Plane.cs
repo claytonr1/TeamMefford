@@ -16,6 +16,7 @@ public class Plane
     public double mileRange { get; set; }
     public string location { get; set; }
     public double cruiseSpeed { get; set; }
+    public int passengerCount { get; set; }
 
     public string destination { get; set; }
 
@@ -67,9 +68,29 @@ public class Plane
             throw ex;
         }
     }
-
-    public void depart()
+    //returns number of seats left on plane
+    int seatsAvailable()
     {
-       
+        try
+        {
+            return this.capacity - this.passengerCount;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    DateTime departureTime()
+    {
+        DateTime date = new DateTime();
+        try
+        {
+            return date;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 }

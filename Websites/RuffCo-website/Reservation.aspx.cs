@@ -21,7 +21,7 @@ namespace RuffCoJetReservationSystem
             
             try //catch errors including sql errors!
             {
-                Calendar1.SelectedDate = DateTime.Now;
+
                 //login check
                 CookieHandler.checkLogin();
                 CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
