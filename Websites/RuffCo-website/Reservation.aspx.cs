@@ -20,8 +20,7 @@ namespace RuffCoJetReservationSystem
         {
             
             try //catch errors including sql errors!
-            {
-
+            {      
                 //login check
                 CookieHandler.checkLogin();
                 CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
