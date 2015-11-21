@@ -64,7 +64,7 @@
 
 <!--  The header including the logo -->
              <tr class="header">
-                <td class="logo"><img src="/properties/images/Logo.png" width="260"/></td>
+                <td class="logo"><a href="index.aspx"><img src="/properties/images/Logo.png" width="260"/></a></td>
                 <td class="headerTitle"><strong>Ruff Co. Airlines</strong><br />
                     <span class="fontSize20"><em>&quot;Rough air made easy&quot;</em></span></td>
              </tr>
