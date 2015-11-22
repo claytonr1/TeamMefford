@@ -18,14 +18,13 @@ public class Plane
 
     public int fligthCount { get; set; }
 
-    public List<string> destList { get; set; }
+    //public List<string> destList { get; set; }
 
 
 	public Plane(int id)
 	{
         try
         {
-            List<Flight> flights;
 
             this.id = id;
             this.name = DBPlanes.getName(id);
@@ -34,12 +33,31 @@ public class Plane
             this.location = DBPlanes.getLocation(id);
             this.cruiseSpeed = DBPlanes.getSpeed(id);
 
+            Dictionary<int, Flight> flights = new Dictionary<int, Flight>();  
+
             List<string> resList = DBReservations.getReservationsByPlane(id);
-            foreach (String s in resList)
+            int count = 0;
+
+            foreach (String res in resList)  // "For each reservation that this plane has create a flight based on reservation IDs" - ksm
             {
-                destList.Add(s);
+                flights[count] = new Flight(Convert.ToInt32(res));
+                count++;
+            }
+            count = 0;
+
+            HashSet<Flight> knownValues = new HashSet<Flight>();
+            Dictionary<int, Flight> uniqueValues = new Dictionary<int, Flight>();
+
+            foreach (var pair in flights) // "Remove duplicate flights" -ksm
+            {
+                if (knownValues.Add(pair.Value))
+                {
+                    uniqueValues.Add(pair.Key, pair.Value);
+                }
             }
 
+            flights = uniqueValues;
+            
         }
         catch(Exception ex)
         {
@@ -47,7 +65,7 @@ public class Plane
         }
 	}
 
-    bool isAvailable()
+    public bool isAvailable()
     {
         try
         {

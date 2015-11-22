@@ -24,26 +24,36 @@ namespace RuffCoJetReservationSystem
                 //login check
                 CookieHandler.checkLogin();
                 CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
-                
                 //this populates the name of the current user into the Label1 textbox
                 Label1.Text = CookieHandler.getUserFullName();
 
-                if (!IsPostBack)
-                {
-                    String[] destList;
-                    destList = DBDestinations.getDestinationsList().ToArray();
-                    foreach (string s in destList)
-                    {
-                        destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
-                    }
-                    String[] planeList;
-                    planeList = DBPlanes.PlanesList().ToArray();
-                    foreach (string s in planeList)
-                    {
-                        jetsDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
+                Dictionary<int,Plane> planes = new Dictionary<int,Plane>();
 
-                    }
+                destinationDropDownList.Items.Clear();
+                jetsDropDownList.Items.Clear();
+
+                String[] destList;
+                destList = DBDestinations.getDestinationsList().ToArray();
+                foreach (string s in destList)
+                {
+                    destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
                 }
+                String[] planeList;
+                planeList = DBPlanes.PlanesList().ToArray();
+                int count = 0;
+                foreach (string plane in planeList)
+                {
+                    planes[count] = new Plane(Convert.ToInt32(plane));
+                    count++;
+                }
+                foreach (var pair in planes)
+                {
+                    if(pair.Value.isAvailable())
+                    {
+                        jetsDropDownList.Items.Add(pair.Value.name); //automatically adds available jets to dropdownlist -ksm
+                    }
+                }   
+                
             }
             catch (Exception ex)
             {
