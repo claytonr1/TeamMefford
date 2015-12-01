@@ -63,7 +63,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("id = {0}", plane_id);
+                string expression = string.Format("plane_id = {0}", plane_id);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["planes"].Select(expression);
                 string name = Convert.ToString(result[0][1]);
                 return name;
@@ -78,7 +78,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("id = {0}", plane_id);
+                string expression = string.Format("plane_id = {0}", plane_id);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["planes"].Select(expression);
                 string model = Convert.ToString(result[0][2]);
                 return model;
@@ -108,7 +108,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
         {
             try
             {
-                string expression = string.Format("id = {0}", plane_id);
+                string expression = string.Format("plane_id = {0}", plane_id);
                 DataRow[] result = DBHandler.ruffCoDB.Tables["planes"].Select(expression);
                 int cap = Convert.ToInt32(result[0][3]);
                 return cap;
