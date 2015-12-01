@@ -195,6 +195,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 throw e;
             }
         }
+ 
 
         /// <summary>
         /// Loads or reloads the employees.
@@ -440,7 +441,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 //Registers the guests
                 if (hasGuests && (guestsIDList != null))
                 {
-                    SortedDictionary<int, string> resList = DBReservations.getReservationsList();
+                    SortedDictionary<int, string> resList = DBReservations.getReservationsDictionary();
                     int resID = resList.Last().Key;
 
                     for (int i = 0; i < guestsIDList.Count; i++)

@@ -12,14 +12,18 @@ public partial class Menu : System.Web.UI.Page
     {
         // This is a login check that redirects to login page if there is no valid login cookie.  
         CookieHandler.checkLogin();
-        if (!IsPostBack)
+        DBHandler.populateDataSet();
+
+        Dictionary<int, Plane> planes = new Dictionary<int, Plane>();
+        int count = 0;
+        foreach (string plane in DBPlanes.PlanesList())
         {
-            List<string> Reservations = DBReservations.getReservationsByEmployee(CookieHandler.getID()); // updates database based on current Reservations -ksm
-            foreach (string s in Reservations)
-            {
- 
-            }
+            Plane p = new Plane(DBPlanes.getID(plane)); //Create Plane object for each plane 
+            planes[count] = p; //Populate planes Dictionary with Plane
+            planes[count].updatePlaneLocation(); //Updates planes location based on Plane Flight plan
+            count++;
         }
+        Session["planes"] = planes;
     }
     protected void btnViewExistingInformation_Click(object sender, EventArgs e)
     {

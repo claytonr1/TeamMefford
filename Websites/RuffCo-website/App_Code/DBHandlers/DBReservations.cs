@@ -9,11 +9,26 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBReservations
     {
-        public static SortedDictionary<int, String> getReservationsList()
+        public static List<int> getReservationsList()
         {
             try
             {
-                SortedDictionary<int, String> resList = new SortedDictionary<int, string>();
+                SortedDictionary<int, string> dictionary = new SortedDictionary<int, string>();
+                dictionary = getReservationsDictionary();
+                List<int> list = new List<int>();
+                list = dictionary.Keys.ToList();
+                return list;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public static SortedDictionary<int, string> getReservationsDictionary()
+        {
+            try
+            {
+                SortedDictionary<int, string> resList = new SortedDictionary<int, string>();
                 DataRow[] result = DBHandler.ruffCoDB.Tables["reservations"].Select();
 
                 for (int i = 0; i < result.Length; i++)

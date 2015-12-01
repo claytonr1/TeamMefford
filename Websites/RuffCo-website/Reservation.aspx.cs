@@ -18,49 +18,34 @@ namespace RuffCoJetReservationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            try //catch errors including sql errors!
-            {      
+                  
                 //login check
                 CookieHandler.checkLogin();
                 CookieHandler.clearResultsCookies(); //clear cookies if second reservation or more this session
                 //this populates the name of the current user into the Label1 textbox
                 Label1.Text = CookieHandler.getUserFullName();
 
-                Dictionary<int,Plane> planes = new Dictionary<int,Plane>();
+                Dictionary<int, Plane> planes = (Dictionary<int, Plane>)Session["planes"];
 
                 destinationDropDownList.Items.Clear();
                 jetsDropDownList.Items.Clear();
 
-                String[] destList;
-                destList = DBDestinations.getDestinationsList().ToArray();
+                String[] destList = DBDestinations.getDestinationsList().ToArray();
                 foreach (string s in destList)
                 {
                     destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
                 }
-                String[] planeList;
-                planeList = DBPlanes.PlanesList().ToArray();
-                int count = 0;
-                foreach (string plane in planeList)
-                {
-                    planes[count] = new Plane(Convert.ToInt32(plane));
-                    count++;
-                }
+
                 foreach (var pair in planes)
                 {
-                    if(pair.Value.isAvailable())
+                    int key = pair.Key;
+                    Plane p = pair.Value;
+                    if (p.isAvailable())
                     {
-                        jetsDropDownList.Items.Add(pair.Value.name); //automatically adds available jets to dropdownlist -ksm
-                    }
-                }   
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            
-        }
+                        jetsDropDownList.Items.Add(p.name); //automatically adds available jets to dropdownlist -ksm 
+                    }    
+                }
+          }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -94,5 +79,5 @@ namespace RuffCoJetReservationSystem
         {
             CookieHandler.clearUserPassword();
         }
-}
+    }
 }

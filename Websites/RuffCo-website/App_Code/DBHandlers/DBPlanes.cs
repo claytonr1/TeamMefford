@@ -10,7 +10,7 @@ namespace RuffCoJetReservationSystem.DBHandlers
 {
     public static class DBPlanes
     {
-        public static List<String> PlanesList()
+        public static List<string> PlanesList()
         {
             try
             {
@@ -59,7 +59,6 @@ namespace RuffCoJetReservationSystem.DBHandlers
                 return -1;
             }
         }
-
         public static String getName(int plane_id)
         {
             try
