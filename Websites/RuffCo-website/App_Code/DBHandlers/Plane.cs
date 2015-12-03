@@ -70,48 +70,63 @@ public class Plane
         }
         catch
         {
-            return false;
+            return true;
         }
 
     }
 
     public Flight getFlight() //gets the Planes current Flight or next future flight
     {
-        DateTime minDate = DateTime.MaxValue;
-        foreach (var pair in flights)
-        {
-            Flight flight = pair.Value;
-            
-            if (flight.departureTime < minDate)
-                minDate = flight.departureTime;
+        Dictionary<int, Flight> f = new Dictionary<int, Flight>();
 
-        }
-        foreach (var pair in flights)
+        f = flights;
+
+        DateTime minDate = DateTime.MaxValue;
+        
+        foreach (var pair in f)
         {
+
             Flight flight = pair.Value;
+            foreach (var p in f)
+            {
+                Flight fl = pair.Value;
+
+                if (fl.departureTime < minDate)
+                    minDate = fl.departureTime;
+            }
             if (flight.departureTime == minDate && DateTime.Now < flight.returnTime)
             {
                 return flight;
             }
+
         }
         return null;
     }
     
     public void updatePlaneLocation()
     {
-        try
-        {
-            if (this.getFlight().departureTime < DateTime.Now)
+            foreach(var pair in flights)
             {
-                DBPlanes.setLocation(this.id, this.getFlight().destination);
+                try
+                {
+                    Flight flight = this.getFlight();
+                    if (flight.departureTime < DateTime.Now && flight.returnTime > DateTime.Now)
+                    {
+                        DBPlanes.setLocation(this.id, flight.destination);
+                    }
+                    else
+                    {
+                        DBPlanes.setLocation(this.id, "Little Rock, AR");
+                    }
+                }
+                catch
+                {
+                    DBPlanes.setLocation(this.id, "Little Rock, AR");
+                }
             }
-        }
-        catch
-        {
-
-        }
-    }
-
+     }
 }
+
+
     
 

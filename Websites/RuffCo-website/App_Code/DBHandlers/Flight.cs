@@ -30,7 +30,7 @@ public class Flight
             this.departureTime = DBReservations.getDate(resId);
             this.destination = DBDestinations.getLocation(DBReservations.getDestination(resId));
             this.travelDistance = DBDestinations.getDistanceFromLR(this.destination);
-            this.flightSpeed = DBPlanes.getSpeed(this.planeName);
+            this.flightSpeed = DBPlanes.getSpeed(DBPlanes.getID(this.planeName));
             this.passengerCount = 0;
             this.travelTime = ((this.travelDistance * 2) / this.flightSpeed) + 1; //Travel time to and from destination with 1 extra hour for refuling and acceleration/deceleration; 
             
@@ -47,7 +47,9 @@ public class Flight
             this.seatsAvailable = this.capacity - this.passengerCount;
 
             this.returnTime = this.departureTime;
-            this.returnTime.Add(TimeSpan.FromHours(travelTime));
+            TimeSpan time = TimeSpan.FromHours(travelTime);
+            this.returnTime = this.returnTime + time;
+
             
         }
         catch (Exception ex)
