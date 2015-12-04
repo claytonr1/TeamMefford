@@ -45,23 +45,23 @@ namespace RuffCoJetReservationSystem
                 if (!IsPostBack)
                 {
                     Dictionary<int, Plane> planes = (Dictionary<int, Plane>)Session["planes"];
-
                     String[] destList;
                     destList = DBDestinations.getDestinationsList().ToArray();
                     foreach (string s in destList)
                     {
                         destinationDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
                     }
-                    String[] planeList;
-                    planeList = DBPlanes.PlanesList().ToArray();
-                    foreach (string s in planeList)
+                    foreach (var pair in planes)
                     {
-                        jetsDropDownList.Items.Add(s); //automatically adds database items to dropdown list -ksm
-
+                        int key = pair.Key;
+                        Plane p = pair.Value;
+                        if (p.isAvailable())
+                        {
+                            jetsDropDownList.Items.Add(p.name); //automatically adds available jets to dropdownlist -ksm 
+                        }    
                     }
                 }
-
-
+                
           }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -73,14 +73,32 @@ namespace RuffCoJetReservationSystem
 
             if (ampmDropDownList.SelectedValue == "PM")
             {
-                int hours = Convert.ToInt32(hourBox.Text) + 12;
+                int hours;
+                if (hourBox.Text == "12")
+                {
+                    hours = Convert.ToInt32(hourBox.Text);
+                }
+                else
+                {
+                    hours = Convert.ToInt32(hourBox.Text) + 12;
+                }
                 TimeSpan time = new TimeSpan(hours, Convert.ToInt32(minuteBox.Text), 0);
                 date = date.Date + time;
             }
             else
             {
-                TimeSpan time = new TimeSpan(Convert.ToInt32(hourBox.Text), Convert.ToInt32(minuteBox.Text), 0);
+                int hours;
+                if (hourBox.Text == "12")
+                {
+                    hours = Convert.ToInt32(hourBox.Text) - 12;
+                }
+                else
+                {
+                    hours = Convert.ToInt32(hourBox.Text);
+                }
+                TimeSpan time = new TimeSpan(hours, Convert.ToInt32(minuteBox.Text), 0);
                 date = date.Date + time;
+                
             }
 
             DBReservations.RegisterReservation(DBPlanes.getID(jet), CookieHandler.getID(), DBDestinations.getID(dest), date);

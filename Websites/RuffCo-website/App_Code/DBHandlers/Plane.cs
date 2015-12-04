@@ -14,10 +14,10 @@ public class Plane
     public double mileRange { get; set; }
     public string location { get; set; }
     public double cruiseSpeed { get; set; }
-    public Dictionary<int, Flight> flights = new Dictionary<int, Flight>();  
+    public Dictionary<int, Flight> flights = new Dictionary<int, Flight>();
 
-	public Plane(int id)
-	{
+    public Plane(int id)
+    {
         try
         {
             this.id = id;
@@ -34,7 +34,7 @@ public class Plane
                 flights[count] = new Flight(Convert.ToInt32(res));
                 count++;
             }
-            
+
             HashSet<Flight> knownValues = new HashSet<Flight>();
             Dictionary<int, Flight> uniqueValues = new Dictionary<int, Flight>();
 
@@ -47,13 +47,13 @@ public class Plane
             }
 
             flights = uniqueValues;
-            
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
         }
-	}
+    }
 
     public bool isAvailable()
     {
@@ -77,55 +77,64 @@ public class Plane
 
     public Flight getFlight() //gets the Planes current Flight or next future flight
     {
-        Dictionary<int, Flight> f = new Dictionary<int, Flight>();
-
-        f = flights;
-
-        DateTime minDate = DateTime.MaxValue;
-        
-        foreach (var pair in f)
+        try
         {
+            Dictionary<int, Flight> f = flights;
+            Dictionary<int, Flight> minFlights = flights;
+            DateTime minDate = DateTime.MaxValue;
 
-            Flight flight = pair.Value;
-            foreach (var p in f)
+            foreach (var pair in f)
             {
-                Flight fl = pair.Value;
 
-                if (fl.departureTime < minDate)
-                    minDate = fl.departureTime;
-            }
-            if (flight.departureTime == minDate && DateTime.Now < flight.returnTime)
-            {
-                return flight;
-            }
+                Flight flight = pair.Value;
+                foreach (var p in minFlights)
+                {
+                    Flight fl = p.Value;
+                    if (fl.departureTime < minDate)
+                        minDate = fl.departureTime;
+                }
+                if (flight.departureTime == minDate && DateTime.Now < flight.returnTime)
+                {
+                    return flight;
+                }
+                else
+                {
+                    minFlights.Remove(pair.Key);
+                }
 
+            }
+            return null;
         }
-        return null;
+        catch
+        {
+            return null;
+        }
     }
-    
+
     public void updatePlaneLocation()
     {
-            foreach(var pair in flights)
+        try
+        {
+            foreach (var pair in flights)
             {
-                try
+                Flight flight = this.getFlight();
+                if (flight.departureTime < DateTime.Now && flight.returnTime > DateTime.Now)
                 {
-                    Flight flight = this.getFlight();
-                    if (flight.departureTime < DateTime.Now && flight.returnTime > DateTime.Now)
-                    {
-                        DBPlanes.setLocation(this.id, flight.destination);
-                    }
-                    else
-                    {
-                        DBPlanes.setLocation(this.id, "Little Rock, AR");
-                    }
+                    DBPlanes.setLocation(this.id, flight.destination);
                 }
-                catch
+                else
                 {
                     DBPlanes.setLocation(this.id, "Little Rock, AR");
                 }
             }
-     }
+        }
+        catch
+        {
+            DBPlanes.setLocation(this.id, "Little Rock, AR");
+        }
+    }
 }
+
 
 
     
